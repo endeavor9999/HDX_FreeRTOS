@@ -133,7 +133,6 @@ void gpio_JAO_init(void)
     IfxPort_setPinLow(PORT20, PIN_01);
     IfxPort_setPinLow(PORT20, PIN_06);
     IfxPort_setPinLow(PORT20, PIN_09);
-    //1211
     //IfxPort_setPinLow(PORT21, PIN_01);
 }
 
@@ -150,10 +149,6 @@ void p20_6_toggle(void){ IfxPort_togglePin(PORT20,  PIN_06);}
 void p20_9_high(void)  { IfxPort_setPinHigh(PORT20, PIN_09);}
 void p20_9_low(void)   { IfxPort_setPinLow(PORT20,  PIN_09);}
 void p20_9_toggle(void){ IfxPort_togglePin(PORT20,  PIN_09);}
-
-void p21_1_high(void)  { IfxPort_setPinHigh(PORT21, PIN_01);}
-void p21_1_low(void)   { IfxPort_setPinLow(PORT21,  PIN_01);}
-void p21_1_toggle(void){ IfxPort_togglePin(PORT21,  PIN_01);}
 
 boolean read_V_JAO_MV_5V_PG(void)
 {
