@@ -1,5 +1,6 @@
 #include "Ifx_Types.h"
-
+#include "GPT12_Timer_Interrupt.h"
+#include "User_RTOS.h"
 #include "IfxPort.h"
 #include "IfxStm.h"
 
@@ -68,7 +69,6 @@ void p23_0_low(void);
 void p23_0_toggle(void);
 boolean read_V_TSC8071_4P0_PG(void);
 
-void task_app_TCS8071_PWR_SQ(void *arg);
-void task_app_JAO_PWR_SQ(void *arg);
+void task_app_PWR_SQ(void *arg);
 
 

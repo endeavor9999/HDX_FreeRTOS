@@ -185,55 +185,65 @@ boolean read_V_TSC8071_4P0_PG(void)
 }
 
 
-void task_app_TCS8071_PWR_SQ(void *arg)
+void task_app_PWR_SQ(void *arg)
 {
+
     gpio_TCS8071_init();
+    gpio_JAO_init();
 
     while(1)
     {
+//JAO
+        p20_0_high();
+        delay_ms(12);
+        p20_0_low();
+        delay_ms(5);
+        p20_0_high();
+        delay_ms(22);
+        p20_1_high();
+        //while(!read_V_JAO_MV_5V_PG())
+        {
+
+        }
+        delay_ms(7);
+        delay_ms(3);
+        p20_6_high();
+        //while(!read_V_JAO_HV_12V_PG())
+        {
+
+        }
+        delay_ms(7);
+        while(!read_JAO_VDDIN_PWR_BAD_N_3P3())
+        {
+
+        }
+        delay_ms(52);
+        p20_9_high();
+        delay_ms(7);
+        while(!read_JAO_CARRIER_POWER_ON())
+        {
+
+        }
+ //TCC
         while(!read_V_TSC8071_4P0_PG())
         {
 
         }
-        delay_ms(1);
+        //*
+        delay_ms(10);
         p22_0_high();
         delay_ms(10);
         p23_0_high();
         delay_ms(3);
         p14_9_high();
-
-
-    }
-
-}
-
-void task_app_JAO_PWR_SQ(void *arg)
-{
-    gpio_JAO_init();
-
-    while(1)
-    {
-        p20_0_high();
         delay_ms(10);
-        p20_0_low();
-        delay_ms(3);
-        p20_0_high();
-        delay_ms(20);
-        p20_1_high();
-        while(!read_V_JAO_MV_5V_PG())
-        {
+         //*/
+        IfxPort_setPinModeOutput(PORT20, PIN_11, IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general); //20.11
+        IfxPort_setPinHigh(PORT20, PIN_11);
 
-        }
-        delay_ms(1);
-        p20_6_high();
-        while(!read_V_JAO_HV_12V_PG())
-        {
-
-        }
-        delay_ms(50);
-        p20_9_high();
-
-
+        vTaskDelete(NULL);
     }
 
 }
+
+

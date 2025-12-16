@@ -135,78 +135,28 @@ void core0_main(void)
     Port_Init();
     initGpt12Timer();
 
-    //xTaskCreate(main_loop, "main_loop", configMINIMAL_STACK_SIZE, NULL, 0, NULL);
+
+    sys_thread_new("Pwr_SQgpio",task_app_PWR_SQ,NULL,configMINIMAL_STACK_SIZE,4);
+    xTaskCreate(main_loop, "main_loop", configMINIMAL_STACK_SIZE, NULL, 6, NULL);
     //sys_thread_new("Pwr_SQgpio",Pwr_SQgpio,NULL,512,4);
     //sys_thread_new("main_loop",main_loop,NULL,1024,4);
-    //vTaskStartScheduler();
-    gpio_TCS8071_init();
-    gpio_JAO_init();
-    static int isfirst = 1;
+    vTaskStartScheduler();
+
     while(1)
     {
         sda++;
-        if(isfirst ){
-            isfirst = 0;
-        //JAO
-            //delay_ms(5000);
-                          p20_0_high();
-                          delay_ms(12);
-                          p20_0_low();
-                          delay_ms(5);
-                          p20_0_high();
-                          delay_ms(22);
-                          p20_1_high();
-                          //while(!read_V_JAO_MV_5V_PG())
-                          {
 
-                          }
-                          delay_ms(7);
-                          delay_ms(3);
-                          p20_6_high();
-                          //while(!read_V_JAO_HV_12V_PG())
-                          {
-
-                          }
-                          delay_ms(7);
-                          while(!read_JAO_VDDIN_PWR_BAD_N_3P3())
-                          {
-
-                          }
-                          delay_ms(52);
-                          p20_9_high();
-                          delay_ms(7);
-                          while(!read_JAO_CARRIER_POWER_ON())
-                          {
-
-                          }
-                   //TCC
-
-                          //while(!read_V_TSC8071_4P0_PG())
-                          {
-                          }
-                          //*
-                          delay_ms(1);
-                          p22_0_high();
-                          delay_ms(10);
-                          p23_0_high();
-                          delay_ms(3);
-                          p14_9_high();
-                          delay_ms(10);
-                           //*/
-                          IfxPort_setPinModeOutput(PORT20, PIN_11, IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general); //20.11
-                          IfxPort_setPinHigh(PORT20, PIN_11);
-                          //p21_1_high();
-        }
     }
 }
 
 uint32 str;
 void main_loop(void *arg)
 {
+
     while(1)
     {
         str++;
-        //runShellInterface(); /* Run the application shell */
+        runShellInterface(); /* Run the application shell */
         vTaskDelay(100);
     }
 }
