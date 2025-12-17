@@ -69,6 +69,7 @@ void p23_0_low(void);
 void p23_0_toggle(void);
 boolean read_V_TSC8071_4P0_PG(void);
 
+boolean wait_for_signal(boolean (*read_func)(void), uint32_t timeout_ms);
 void task_app_PWR_SQ(void *arg);
 
 

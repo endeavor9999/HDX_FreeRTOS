@@ -185,6 +185,24 @@ boolean read_V_TSC8071_4P0_PG(void)
 }
 
 
+boolean wait_for_signal(boolean (*read_func)(void), uint32_t timeout_ms)
+{
+    uint32_t elapsed_ms = 0;
+
+        while (!read_func())
+        {
+            if (elapsed_ms >= timeout_ms)
+            {
+                return TRUE;   // timeout 발생
+            }
+
+            delay_ms(1);        // 1ms 대기
+            elapsed_ms += 1;
+        }
+
+        return TRUE;            // 신호 정상 감지
+}
+
 void task_app_PWR_SQ(void *arg)
 {
 
@@ -213,22 +231,21 @@ void task_app_PWR_SQ(void *arg)
 
         }
         delay_ms(7);
-        while(!read_JAO_VDDIN_PWR_BAD_N_3P3())
-        {
 
-        }
+        wait_for_signal(read_JAO_VDDIN_PWR_BAD_N_3P3, 500);
+
         delay_ms(52);
         p20_9_high();
         delay_ms(7);
-        while(!read_JAO_CARRIER_POWER_ON())
-        {
 
-        }
+        wait_for_signal(read_JAO_CARRIER_POWER_ON, 500);
+
+
+
+
  //TCC
-        while(!read_V_TSC8071_4P0_PG())
-        {
 
-        }
+        wait_for_signal(read_V_TSC8071_4P0_PG, 500);
         //*
         delay_ms(10);
         p22_0_high();
