@@ -235,11 +235,11 @@ void initSerialInterface(void)
     const IfxAsclin_Asc_Pins pins = {
             .cts        = NULL_PTR,                         /* CTS pin not used                                     */
             .ctsMode    = IfxPort_InputMode_pullUp,
-            .rx         = &IfxAsclin0_RXA_P14_1_IN,         /* Select the pin for RX connected to the USB port      */
+            .rx         = &IfxAsclin0_RXD_P33_10_IN,         /* Select the pin for RX connected to the USB port      */
             .rxMode     = IfxPort_InputMode_pullUp,         /* RX pin                                               */
             .rts        = NULL_PTR,                         /* RTS pin not used                                     */
             .rtsMode    = IfxPort_OutputMode_pushPull,
-            .tx         = &IfxAsclin0_TX_P14_0_OUT,         /* Select the pin for TX connected to the USB port      */
+            .tx         = &IfxAsclin0_TX_P15_2_OUT,         /* Select the pin for TX connected to the USB port      */
             .txMode     = IfxPort_OutputMode_pushPull,      /* TX pin                                               */
             .pinDriver  = IfxPort_PadDriver_cmosAutomotiveSpeed1
     };

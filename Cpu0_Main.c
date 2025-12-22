@@ -135,7 +135,7 @@ void core0_main(void)
     Port_Init();
     initGpt12Timer();
 
-
+    initShellInterface();
     sys_thread_new("task_app_PWR_SQ",task_app_PWR_SQ,NULL,configMINIMAL_STACK_SIZE,4);
     xTaskCreate(main_loop, "main_loop", configMINIMAL_STACK_SIZE, NULL, 6, NULL);
     //sys_thread_new("Pwr_SQgpio",Pwr_SQgpio,NULL,512,4);
