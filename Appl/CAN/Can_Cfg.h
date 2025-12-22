@@ -52,8 +52,8 @@ extern uint32 Recive_Data_0x201[4][3];
 
 ///////////////CanModule 0///////////////
 ///////////////Can1->Node1////////////////
-#define Can0_Tx_pin IfxCan_TXD11_P00_4_OUT    //Add Can tranceiver For Mobis board
-#define Can0_Rx_pin IfxCan_RXD11B_P00_5_IN    //Add Can tranceiver For Mobis board
+#define Can0_Tx_pin IfxCan_TXD00_P02_0_OUT    //Add Can tranceiver For Mobis board
+#define Can0_Rx_pin IfxCan_RXD00A_P02_1_IN    //Add Can tranceiver For Mobis board
 
 ///////////////CanModule 1///////////////
 ///////////////Can0->Node0////////////////

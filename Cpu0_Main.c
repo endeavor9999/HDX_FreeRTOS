@@ -34,7 +34,8 @@
 
 #include "PWR_SQ.h"
 #include "Can_Cfg.h"
-                                                                                                        //Function   Mode   Direction  Latch  Pull Up Pull Down Drive Strength
+#include "StdIf/IfxStdIf_DPipe.h"
+#include "Ifx_Console.h"                                                                            //Function   Mode   Direction  Latch  Pull Up Pull Down Drive Strength
 
 #define MBL_ACOK_MCU_IN_PIN                 DIO_CHANNEL33_[6]   //33_6      ACOK_MCU_IN                     GPIO    Digital     In      n/a     No      No          NORMAL
 
@@ -159,14 +160,56 @@ void core0_main(void)
 uint32 str;
 void main_loop(void *arg)
 {
+    static const uint8 loopbackPattern[] = "LOOPBACK_TEST\r\n";
+    TickType_t lastTick = xTaskGetTickCount();
+    TickType_t lastCanTick = xTaskGetTickCount();
+    uint32 canTxCounter = 0;
+    uint32 lastRxMarker = 0;
+
 
     while(1)
     {
         str++;
         runShellInterface(); /* Run the application shell */
 
+        if((xTaskGetTickCount() - lastTick) >= pdMS_TO_TICKS(1000))
+        {
+            Ifx_SizeT txCount = (Ifx_SizeT)(sizeof(loopbackPattern) - 1U);
+            IfxStdIf_DPipe_write(&g_ascStandardInterface, (void *)loopbackPattern, &txCount, TIME_NULL);
+            lastTick = xTaskGetTickCount();
+        }
+        uint8 rxBuffer[64];
+        Ifx_SizeT rxCount = (Ifx_SizeT)sizeof(rxBuffer);
+        if(IfxStdIf_DPipe_read(&g_ascStandardInterface, rxBuffer, &rxCount, TIME_NULL))
+        {
+            if(rxCount > 0U)
+            {
+                IfxStdIf_DPipe_write(&g_ascStandardInterface, rxBuffer, &rxCount, TIME_NULL);
+            }
+        }
+        if((xTaskGetTickCount() - lastCanTick) >= pdMS_TO_TICKS(1000))
+        {
+            canTxCounter++;
+            Can0_Cfg.Can_Ch->txMsg.messageId = 0x201;
+            Can0_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
+            Can0_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_standard;
+            Can0_Cfg.Can_Ch->txData[0] = 0xA5A50000U | (canTxCounter & 0xFFFFU);
+            Can0_Cfg.Can_Ch->txData[1] = 0x5A5A0000U | (canTxCounter & 0xFFFFU);
+            IfxCan_Can_sendMessage(&Can0_Cfg.Can_Ch->canSrcNode, &Can0_Cfg.Can_Ch->txMsg,
+                                   &Can0_Cfg.Can_Ch->txData[0]);
+            lastCanTick = xTaskGetTickCount();
+        }
+
+        if(lastRxMarker != Recive_Data_0x201[0][0])
+        {
+            lastRxMarker = Recive_Data_0x201[0][0];
+            Ifx_Console_print("CAN RX 0x201: %08X %08X\r\n",
+                              Recive_Data_0x201[0][0], Recive_Data_0x201[0][1]);
+        }
+
         //Ifx_Console_print("TEST \r\n");
-        vTaskDelay(100);
+        //vTaskDelay(100);
+        vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
 
