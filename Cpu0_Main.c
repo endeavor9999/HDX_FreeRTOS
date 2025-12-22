@@ -138,6 +138,12 @@ void core0_main(void)
 
     initShellInterface();
 
+
+    //CAN0 STB LOW
+        IfxPort_setPinPadDriver(PORT02, PIN_02,  IfxPort_PadDriver_cmosAutomotiveSpeed1);
+        IfxPort_setPinModeOutput(PORT02, PIN_02, IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
+        IfxPort_setPinLow(PORT02, PIN_02);
+    ////////////////////
     Can_NodeConfig_Set();
     Can_init(&Can0_Cfg);
     Can_init(&Can1_Cfg);
