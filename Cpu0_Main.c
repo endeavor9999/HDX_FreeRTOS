@@ -33,7 +33,7 @@
 #include "GPT12_Timer_Interrupt.h"
 
 #include "PWR_SQ.h"
-
+#include "Can_Cfg.h"
                                                                                                         //Function   Mode   Direction  Latch  Pull Up Pull Down Drive Strength
 
 #define MBL_ACOK_MCU_IN_PIN                 DIO_CHANNEL33_[6]   //33_6      ACOK_MCU_IN                     GPIO    Digital     In      n/a     No      No          NORMAL
@@ -136,6 +136,13 @@ void core0_main(void)
     initGpt12Timer();
 
     initShellInterface();
+
+    Can_NodeConfig_Set();
+    Can_init(&Can0_Cfg);
+    Can_init(&Can1_Cfg);
+    Can_init(&Can2_Cfg);
+    Can_init(&Can3_Cfg);
+
     sys_thread_new("task_app_PWR_SQ",task_app_PWR_SQ,NULL,configMINIMAL_STACK_SIZE,4);
     xTaskCreate(main_loop, "main_loop", configMINIMAL_STACK_SIZE, NULL, 6, NULL);
     //sys_thread_new("Pwr_SQgpio",Pwr_SQgpio,NULL,512,4);
@@ -157,6 +164,8 @@ void main_loop(void *arg)
     {
         str++;
         runShellInterface(); /* Run the application shell */
+
+        //Ifx_Console_print("TEST \r\n");
         vTaskDelay(100);
     }
 }
