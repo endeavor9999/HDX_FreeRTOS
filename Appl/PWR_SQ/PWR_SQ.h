@@ -4,6 +4,7 @@
 #include "IfxPort.h"
 #include "IfxStm.h"
 
+#define PORT00          (&MODULE_P00)
 #define PORT01          (&MODULE_P01)
 #define PORT02          (&MODULE_P02)
 #define PORT10          (&MODULE_P10)

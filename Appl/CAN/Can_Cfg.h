@@ -58,18 +58,13 @@ extern uint32 Recive_Data_0x201[4][3];
 
 ///////////////CanModule 1///////////////
 ///////////////Can0->Node0////////////////
-#define Can1_Tx_pin IfxCan_TXD00_P01_13_OUT
-#define Can1_Rx_pin IfxCan_RXD00F_P01_8_IN
+#define Can1_Tx_pin IfxCan_TXD01_P02_9_OUT
+#define Can1_Rx_pin IfxCan_RXD01E_P02_10_IN
 
 ///////////////CanModule 2///////////////
 ///////////////Can2->Node1////////////////
-#define Can2_Tx_pin IfxCan_TXD21_P22_6_OUT
-#define Can2_Rx_pin IfxCan_RXD21F_P22_7_IN
-
-///////////////CanModule 3///////////////
-///////////////Can0->Node3////////////////
-#define Can3_Tx_pin IfxCan_TXD03_P20_3_OUT
-#define Can3_Rx_pin IfxCan_RXD03C_P20_0_IN
+#define Can2_Tx_pin IfxCan_TXD10_P00_0_OUT
+#define Can2_Rx_pin IfxCan_RXD10A_P00_1_IN
 
 
 void Can_NodeConfig_Set(void);

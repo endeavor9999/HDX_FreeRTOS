@@ -9,9 +9,11 @@
 
 McmcanType                  Can0_Node00;                       /* Global MCMCAN configuration and control structure    */
 McmcanType                  Can1_Node00;                       /* Global MCMCAN configuration and control structure    */
-McmcanType                  Can2_Node21;                       /* Global MCMCAN configuration and control structure    */
-McmcanType                  Can3_Node03;                       /* Global MCMCAN configuration and control structure    */
-uint32 g_can0_rx201_cnt = 0;
+McmcanType                  Can2_Node00;                       /* Global MCMCAN configuration and control structure    */
+
+uint32 g_can0_rx_cnt = 0;
+uint32 g_can1_rx_cnt = 0;
+uint32 g_can2_rx_cnt = 0;
 Can_Node_Info Can0_Cfg;
 Can_Node_Info Can1_Cfg;
 Can_Node_Info Can2_Cfg;
@@ -148,7 +150,7 @@ void Can_NodeConfig_Set(){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Can2_Cfg.Can_Ch = &Can2_Node21;
+    Can2_Cfg.Can_Ch = &Can2_Node00;
     Can2_Cfg.Can_Module = &MODULE_CAN2;
     Can2_Cfg.Node = IfxCan_NodeId_1;
     Can2_Cfg.Tx_Priority = ISR_PRIORITY_CAN2_TX_Complete;
@@ -188,52 +190,6 @@ void Can_NodeConfig_Set(){
     IfxCan_Can_initMessage(&Can2_Cfg.Can_Ch->txMsg);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Can3_Cfg.Can_Ch = &Can3_Node03;
-    Can3_Cfg.Can_Module = &MODULE_CAN0;
-    Can3_Cfg.Node = IfxCan_NodeId_3;
-    Can3_Cfg.Tx_Priority = ISR_PRIORITY_CAN3_TX_Complete;
-
-    Can3_Cfg.Rx_Priority[0] = ISR_PRIORITY_CAN3_RX_BUFFER;
-    Can3_Cfg.Rx_Priority[1] = ISR_PRIORITY_CAN3_RX_FIFO_0;
-    Can3_Cfg.Rx_Priority[2] = ISR_PRIORITY_CAN3_RX_FIFO_1;
-
-    Can3_Cfg.Tx_InterruptLine    = IfxCan_InterruptLine_12;
-    Can3_Cfg.Rx_InterruptLine[0] = IfxCan_InterruptLine_13;
-    Can3_Cfg.Rx_InterruptLine[1] = IfxCan_InterruptLine_14;
-    Can3_Cfg.Rx_InterruptLine[2] = IfxCan_InterruptLine_15;
-    Can3_Cfg.pins.txPin = &Can3_Tx_pin;
-    Can3_Cfg.pins.txPinMode = IfxPort_OutputMode_pushPull;
-    Can3_Cfg.pins.rxPin = &Can3_Rx_pin;
-    Can3_Cfg.pins.rxPinMode = IfxPort_InputMode_pullUp;
-    Can3_Cfg.pins.padDriver = IfxPort_PadDriver_ttlSpeed1;
-    Can3_Cfg.Filter_Std_Cfg = &Can0_filterStdConf[0];
-    Can3_Cfg.Filter_Std_Num = NUMBER_OF_STND_ID_FILTERS;
-    Can3_Cfg.Filter_Ext_Cfg = &Can0_filterExtConf[0];
-    Can3_Cfg.Filter_Ext_Num = NUMBER_OF_EXTD_ID_FILTERS;
-    Can3_Cfg.Can_num = 1;
-
-    IfxCan_Can_initMessage(&Can3_Cfg.Can_Ch->rxMsg[0]);
-
-    Can3_Cfg.Can_Ch->rxMsg[0].messageId = INVALID_ID_VALUE;
-    Can3_Cfg.Can_Ch->rxMsg[0].dataLengthCode = INVALID_DLC_VALUE;
-    Can3_Cfg.Can_Ch->rxMsg[0].frameMode = DEFAULT_FRAME_MODE;
-
-    /* Invalidation of the RX message data content */
-    memset((void *)(&Can3_Cfg.Can_Ch->rxData[0][0]), INVALID_RX_DATA_VALUE, MAXIMUM_CAN_FD_DATA_PAYLOAD);
-
-    /* Invalidation of the TX message data content */
-    memset((void *)(&Can3_Cfg.Can_Ch->txData[0]), INVALID_TX_DATA_VALUE, MAXIMUM_CAN_DATA_PAYLOAD);
-
-    /* Initialization of the TX message with the default configuration */
-    IfxCan_Can_initMessage(&Can3_Cfg.Can_Ch->txMsg);
-
 }
 
 

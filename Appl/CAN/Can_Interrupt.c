@@ -6,7 +6,10 @@
  */
 
 #include "Can_Cfg.h"
-extern uint32 g_can0_rx201_cnt;
+extern uint32 g_can0_rx_cnt;
+extern uint32 g_can1_rx_cnt;
+extern uint32 g_can2_rx_cnt;
+
 
 IFX_INTERRUPT(can0IsrTxHandler, 0, ISR_PRIORITY_CAN0_TX_Complete);
 IFX_INTERRUPT(can0IsrRxHandler1, 0, ISR_PRIORITY_CAN0_RX_BUFFER);
@@ -91,7 +94,7 @@ void can0IsrRxHandler3(void)
         Recive_Data_0x201[0][1]=Can0_Cfg.Can_Ch->rxData[1][1];
         Recive_Data_0x201[0][2]=((Can0_Cfg.Can_Ch->rxData[1][1]&0xc00)>>10);
 
-        g_can0_rx201_cnt++;   // ★ 새로 수신됨 표시
+        g_can0_rx_cnt++;   // ★ 새로 수신됨 표시
     }
 }
 
@@ -147,6 +150,8 @@ void can1IsrRxHandler3(void)
         Recive_Data_0x201[1][0]=Can1_Cfg.Can_Ch->rxData[1][0];
         Recive_Data_0x201[1][1]=Can1_Cfg.Can_Ch->rxData[1][1];
         Recive_Data_0x201[1][2]=((Can1_Cfg.Can_Ch->rxData[1][1]&0xc00)>>10);
+
+        g_can1_rx_cnt++;   // ★ 새로 수신됨 표시
     }
 }
 
@@ -200,6 +205,8 @@ void can2IsrRxHandler3(void)
         Recive_Data_0x201[2][0]=Can2_Cfg.Can_Ch->rxData[1][0];
         Recive_Data_0x201[2][1]=Can2_Cfg.Can_Ch->rxData[1][1];
         Recive_Data_0x201[2][2]=((Can2_Cfg.Can_Ch->rxData[1][1]&0xc00)>>10);
+
+        g_can2_rx_cnt++;   // ★ 새로 수신됨 표시
     }
 
 }
