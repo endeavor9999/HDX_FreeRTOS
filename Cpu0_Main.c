@@ -34,7 +34,6 @@
 
 #include "PWR_SQ.h"
 #include "Can_Cfg.h"
-#include "StdIf/IfxStdIf_DPipe.h"
 #include "Ifx_Console.h"                                                                            //Function   Mode   Direction  Latch  Pull Up Pull Down Drive Strength
 
 #define MBL_ACOK_MCU_IN_PIN                 DIO_CHANNEL33_[6]   //33_6      ACOK_MCU_IN                     GPIO    Digital     In      n/a     No      No          NORMAL
@@ -120,6 +119,15 @@ void main_loop(void *arg);
 void Pwr_SQgpio(void *arg);
 
 uint32 sda=0;
+
+// 보드에 맞게 조정하세요
+#define CAN0_TX_PORT   PORT02
+#define CAN0_TX_PIN    PIN_00   // P02.0 = CAN0_TXD
+#define CAN0_RX_PORT   PORT02
+#define CAN0_RX_PIN    PIN_01   // P02.1 = CAN0_RXD
+#define CAN0_STB_PORT  PORT02
+#define CAN0_STB_PIN   PIN_02   // P02.2 = CAN0_STB
+
 void core0_main(void)
 {
     IfxCpu_enableInterrupts();
@@ -140,9 +148,14 @@ void core0_main(void)
 
 
     //CAN0 STB LOW
-        IfxPort_setPinPadDriver(PORT02, PIN_02,  IfxPort_PadDriver_cmosAutomotiveSpeed1);
-        IfxPort_setPinModeOutput(PORT02, PIN_02, IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
-        IfxPort_setPinLow(PORT02, PIN_02);
+    IfxPort_setPinPadDriver(CAN0_STB_PORT, CAN0_STB_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN0_STB_PORT, CAN0_STB_PIN,IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
+    IfxPort_setPinLow(CAN0_STB_PORT, CAN0_STB_PIN);
+
+    IfxPort_setPinPadDriver(CAN0_TX_PORT, CAN0_TX_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN0_TX_PORT, CAN0_TX_PIN, IfxPort_OutputMode_pushPull,IfxPort_OutputIdx_alt2);
+    IfxPort_setPinModeInput(CAN0_RX_PORT, CAN0_RX_PIN, IfxPort_InputMode_noPullDevice);
+
     ////////////////////
     Can_NodeConfig_Set();
     Can_init(&Can0_Cfg);
@@ -162,55 +175,43 @@ void core0_main(void)
 
     }
 }
-
+extern uint32 g_can0_rx201_cnt;
 uint32 str;
 void main_loop(void *arg)
 {
-    static const uint8 loopbackPattern[] = "LOOPBACK_TEST\r\n";
-    TickType_t lastTick = xTaskGetTickCount();
     TickType_t lastCanTick = xTaskGetTickCount();
     uint32 canTxCounter = 0;
     uint32 lastRxMarker = 0;
-
+    uint32 lastRxCnt = 0;
 
     while(1)
     {
         str++;
         runShellInterface(); /* Run the application shell */
 
-        if((xTaskGetTickCount() - lastTick) >= pdMS_TO_TICKS(1000))
-        {
-            Ifx_SizeT txCount = (Ifx_SizeT)(sizeof(loopbackPattern) - 1U);
-            IfxStdIf_DPipe_write(&g_ascStandardInterface, (void *)loopbackPattern, &txCount, TIME_NULL);
-            lastTick = xTaskGetTickCount();
-        }
-        uint8 rxBuffer[64];
-        Ifx_SizeT rxCount = (Ifx_SizeT)sizeof(rxBuffer);
-        if(IfxStdIf_DPipe_read(&g_ascStandardInterface, rxBuffer, &rxCount, TIME_NULL))
-        {
-            if(rxCount > 0U)
-            {
-                IfxStdIf_DPipe_write(&g_ascStandardInterface, rxBuffer, &rxCount, TIME_NULL);
-            }
-        }
+
+
         if((xTaskGetTickCount() - lastCanTick) >= pdMS_TO_TICKS(1000))
         {
             canTxCounter++;
             Can0_Cfg.Can_Ch->txMsg.messageId = 0x201;
             Can0_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
             Can0_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_standard;
-            Can0_Cfg.Can_Ch->txData[0] = 0xA5A50000U | (canTxCounter & 0xFFFFU);
-            Can0_Cfg.Can_Ch->txData[1] = 0x5A5A0000U | (canTxCounter & 0xFFFFU);
+            Can0_Cfg.Can_Ch->txData[0] = 0x12345678U;
+            Can0_Cfg.Can_Ch->txData[1] = 0x9ABCDEF0U;
             IfxCan_Can_sendMessage(&Can0_Cfg.Can_Ch->canSrcNode, &Can0_Cfg.Can_Ch->txMsg,
                                    &Can0_Cfg.Can_Ch->txData[0]);
             lastCanTick = xTaskGetTickCount();
+            Ifx_Console_print("TEST SEND\r\n");
         }
 
-        if(lastRxMarker != Recive_Data_0x201[0][0])
+        if (lastRxCnt != g_can0_rx201_cnt)
         {
+            lastRxCnt = g_can0_rx201_cnt;
+            Ifx_Console_print("TEST \r\n");
             lastRxMarker = Recive_Data_0x201[0][0];
-            Ifx_Console_print("CAN RX 0x201: %08X %08X\r\n",
-                              Recive_Data_0x201[0][0], Recive_Data_0x201[0][1]);
+            Ifx_Console_print("CAN RX 0x201: %08X %08X (cnt=%u)\r\n",
+                              Recive_Data_0x201[0][0], Recive_Data_0x201[0][1],lastRxCnt);
         }
 
         //Ifx_Console_print("TEST \r\n");

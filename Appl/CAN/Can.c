@@ -65,7 +65,8 @@ void Can_init(Can_Node_Info *Can_Info){
     Can_Info->Can_Ch->canNodeConfig.nodeId = Can_Info->Node;
 
     Can_Info->Can_Ch->canNodeConfig.frame.type = IfxCan_FrameType_transmitAndReceive;
-    Can_Info->Can_Ch->canNodeConfig.frame.mode = IfxCan_FrameMode_fdLongAndFast;
+    //Can_Info->Can_Ch->canNodeConfig.frame.mode = IfxCan_FrameMode_fdLongAndFast;
+    Can_Info->Can_Ch->canNodeConfig.frame.mode = IfxCan_FrameMode_standard;
 
    //Can_Info->Can_Ch->canNodeConfig.txConfig.txMode =IfxCan_TxMode_dedicatedBuffers; //IfxCan_TxMode_sharedFifo; // //IfxCan_TxMode_fifo;
    // Can_Info->Can_Ch->canNodeConfig.txConfig.txBufferDataFieldSize = IfxCan_DataFieldSize_64;
@@ -80,9 +81,12 @@ void Can_init(Can_Node_Info *Can_Info){
 
 
     Can_Info->Can_Ch->canNodeConfig.rxConfig.rxMode = IfxCan_RxMode_sharedAll;
-    Can_Info->Can_Ch->canNodeConfig.rxConfig.rxBufferDataFieldSize = IfxCan_DataFieldSize_64;
-    Can_Info->Can_Ch->canNodeConfig.rxConfig.rxFifo0DataFieldSize = IfxCan_DataFieldSize_64;
-    Can_Info->Can_Ch->canNodeConfig.rxConfig.rxFifo1DataFieldSize = IfxCan_DataFieldSize_64;
+    //Can_Info->Can_Ch->canNodeConfig.rxConfig.rxBufferDataFieldSize = IfxCan_DataFieldSize_64;
+    //Can_Info->Can_Ch->canNodeConfig.rxConfig.rxFifo0DataFieldSize = IfxCan_DataFieldSize_64;
+    //Can_Info->Can_Ch->canNodeConfig.rxConfig.rxFifo1DataFieldSize = IfxCan_DataFieldSize_64;
+    Can_Info->Can_Ch->canNodeConfig.rxConfig.rxBufferDataFieldSize = IfxCan_DataFieldSize_8;
+    Can_Info->Can_Ch->canNodeConfig.rxConfig.rxFifo0DataFieldSize = IfxCan_DataFieldSize_8;
+    Can_Info->Can_Ch->canNodeConfig.rxConfig.rxFifo1DataFieldSize = IfxCan_DataFieldSize_8;
     Can_Info->Can_Ch->canNodeConfig.rxConfig.rxFifo0Size = NUMBER_OF_FIFO_ELEMENTS;
     Can_Info->Can_Ch->canNodeConfig.rxConfig.rxFifo1Size = NUMBER_OF_FIFO_ELEMENTS;
 

@@ -6,7 +6,7 @@
  */
 
 #include "Can_Cfg.h"
-
+extern uint32 g_can0_rx201_cnt;
 
 IFX_INTERRUPT(can0IsrTxHandler, 0, ISR_PRIORITY_CAN0_TX_Complete);
 IFX_INTERRUPT(can0IsrRxHandler1, 0, ISR_PRIORITY_CAN0_RX_BUFFER);
@@ -39,6 +39,7 @@ uint32 RX_TEST3=0;
 uint32 RX_buf=0;
 Can_ReciveData_Type Recive_Data_0x60b;
 uint32 Recive_Data_0x201[4][3];
+
 
 void can0IsrTxHandler(void)
 {
@@ -89,6 +90,8 @@ void can0IsrRxHandler3(void)
         Recive_Data_0x201[0][0]=Can0_Cfg.Can_Ch->rxData[1][0];
         Recive_Data_0x201[0][1]=Can0_Cfg.Can_Ch->rxData[1][1];
         Recive_Data_0x201[0][2]=((Can0_Cfg.Can_Ch->rxData[1][1]&0xc00)>>10);
+
+        g_can0_rx201_cnt++;   // ★ 새로 수신됨 표시
     }
 }
 

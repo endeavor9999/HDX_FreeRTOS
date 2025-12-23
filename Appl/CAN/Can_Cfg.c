@@ -7,11 +7,11 @@
 
 #include "Can_Cfg.h"
 
-McmcanType                  Can0_Node11;                       /* Global MCMCAN configuration and control structure    */
+McmcanType                  Can0_Node00;                       /* Global MCMCAN configuration and control structure    */
 McmcanType                  Can1_Node00;                       /* Global MCMCAN configuration and control structure    */
 McmcanType                  Can2_Node21;                       /* Global MCMCAN configuration and control structure    */
 McmcanType                  Can3_Node03;                       /* Global MCMCAN configuration and control structure    */
-
+uint32 g_can0_rx201_cnt = 0;
 Can_Node_Info Can0_Cfg;
 Can_Node_Info Can1_Cfg;
 Can_Node_Info Can2_Cfg;
@@ -53,9 +53,9 @@ McmcanType                  Can3_Node03;
 
 void Can_NodeConfig_Set(){
 
-    Can0_Cfg.Can_Ch = &Can0_Node11;
-    Can0_Cfg.Can_Module = &MODULE_CAN1;
-    Can0_Cfg.Node = IfxCan_NodeId_1;
+    Can0_Cfg.Can_Ch = &Can0_Node00;
+    Can0_Cfg.Can_Module = &MODULE_CAN0;
+    Can0_Cfg.Node = IfxCan_NodeId_0;
     Can0_Cfg.Tx_Priority = ISR_PRIORITY_CAN0_TX_Complete;
 
     Can0_Cfg.Rx_Priority[0] = ISR_PRIORITY_CAN0_RX_BUFFER;
@@ -102,8 +102,8 @@ void Can_NodeConfig_Set(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     Can1_Cfg.Can_Ch = &Can1_Node00;
-    Can1_Cfg.Can_Module = &MODULE_CAN0;
-    Can1_Cfg.Node = IfxCan_NodeId_0;
+    Can1_Cfg.Can_Module = &MODULE_CAN1;
+    Can1_Cfg.Node = IfxCan_NodeId_1;
     Can1_Cfg.Tx_Priority = ISR_PRIORITY_CAN1_TX_Complete;
 
     Can1_Cfg.Rx_Priority[0] = ISR_PRIORITY_CAN1_RX_BUFFER;

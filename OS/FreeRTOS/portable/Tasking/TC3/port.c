@@ -40,7 +40,7 @@
 
 #include "FreeRTOS.h"
 #include "task.h"
-
+//#define configTICK_STM_DEBUG 1
 /* Prgoram status word macros */
 #define portINITIAL_SYSTEM_PSW \
     ( 0x000008FFUL ) /* Supervisor Mode, MPU Register Set 0 and Call Depth Counting disabled. */
