@@ -230,7 +230,7 @@ void main_loop(void *arg)
         runShellInterface(); /* Run the application shell */
 
 
-        //*
+        /*
         if((xTaskGetTickCount() - lastCanTick0) >= pdMS_TO_TICKS(1000))
         {
             canTxCounter++;
@@ -253,7 +253,7 @@ void main_loop(void *arg)
                               Recive_Data_0x201[0][0], Recive_Data_0x201[0][1],lastRxCnt0);
         }
         // */
-        //*
+        /*
         if((xTaskGetTickCount() - lastCanTick1) >= pdMS_TO_TICKS(1000))
         {
             canTxCounter++;

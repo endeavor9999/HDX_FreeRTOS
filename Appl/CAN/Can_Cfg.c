@@ -104,7 +104,7 @@ void Can_NodeConfig_Set(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     Can1_Cfg.Can_Ch = &Can1_Node00;
-    Can1_Cfg.Can_Module = &MODULE_CAN1;
+    Can1_Cfg.Can_Module = &MODULE_CAN0;
     Can1_Cfg.Node = IfxCan_NodeId_1;
     Can1_Cfg.Tx_Priority = ISR_PRIORITY_CAN1_TX_Complete;
 
@@ -151,8 +151,8 @@ void Can_NodeConfig_Set(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     Can2_Cfg.Can_Ch = &Can2_Node00;
-    Can2_Cfg.Can_Module = &MODULE_CAN2;
-    Can2_Cfg.Node = IfxCan_NodeId_1;
+    Can2_Cfg.Can_Module = &MODULE_CAN1;
+    Can2_Cfg.Node = IfxCan_NodeId_0;
     Can2_Cfg.Tx_Priority = ISR_PRIORITY_CAN2_TX_Complete;
 
     Can2_Cfg.Rx_Priority[0] = ISR_PRIORITY_CAN2_RX_BUFFER;
@@ -205,7 +205,6 @@ void ARS408_Setting(){
     IfxCan_Can_initMessage(&Can0_Cfg.Can_Ch->txMsg);
     IfxCan_Can_initMessage(&Can1_Cfg.Can_Ch->txMsg);
     IfxCan_Can_initMessage(&Can2_Cfg.Can_Ch->txMsg);
-    IfxCan_Can_initMessage(&Can3_Cfg.Can_Ch->txMsg);
 
     CAN_TX_LDATA=0x00001909; //0x09190000;
     CAN_TX_HDATA=0x15100008; //0x08001005;
