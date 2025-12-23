@@ -240,7 +240,8 @@ void task_app_PWR_SQ(void *arg)
 
         wait_for_signal(read_JAO_CARRIER_POWER_ON, 500);
 
-
+        IfxPort_setPinModeOutput(PORT20, PIN_11, IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general); //20.11
+        IfxPort_setPinHigh(PORT20, PIN_11);
 
 
  //TCC
@@ -255,8 +256,7 @@ void task_app_PWR_SQ(void *arg)
         p14_9_high();
         delay_ms(10);
          //*/
-        IfxPort_setPinModeOutput(PORT20, PIN_11, IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general); //20.11
-        IfxPort_setPinHigh(PORT20, PIN_11);
+
 
         vTaskDelete(NULL);
     }
