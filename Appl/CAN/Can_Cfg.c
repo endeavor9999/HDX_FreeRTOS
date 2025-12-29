@@ -246,7 +246,6 @@ void ARS408_Setting(){
 
 
 
-
 void Can_Task(void *arg)
 {
     TickType_t lastCanTick0 = xTaskGetTickCount();

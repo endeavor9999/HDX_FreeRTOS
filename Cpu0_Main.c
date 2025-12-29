@@ -43,28 +43,6 @@ void Pwr_SQgpio(void *arg);
 
 uint32 sda=0;
 
-// 보드에 맞게 조정하세요
-#define CAN0_TX_PORT   PORT02
-#define CAN0_TX_PIN    PIN_00   // P02.0 = CAN0_TXD
-#define CAN0_RX_PORT   PORT02
-#define CAN0_RX_PIN    PIN_01   // P02.1 = CAN0_RXD
-#define CAN0_STB_PORT  PORT02
-#define CAN0_STB_PIN   PIN_02   // P02.2 = CAN0_STB
-
-#define CAN1_TX_PORT   PORT02
-#define CAN1_TX_PIN    PIN_09   // P02.0 = CAN0_TXD
-#define CAN1_RX_PORT   PORT02
-#define CAN1_RX_PIN    PIN_10   // P02.1 = CAN0_RXD
-#define CAN1_STB_PORT  PORT02
-#define CAN1_STB_PIN   PIN_11   // P02.2 = CAN0_STB
-
-#define CAN2_TX_PORT   PORT00
-#define CAN2_TX_PIN    PIN_00   // P02.0 = CAN0_TXD
-#define CAN2_RX_PORT   PORT00
-#define CAN2_RX_PIN    PIN_01   // P02.1 = CAN0_RXD
-#define CAN2_STB_PORT  PORT00
-#define CAN2_STB_PIN   PIN_02   // P02.2 = CAN0_STB
-
 
 
 void core0_main(void)
@@ -98,9 +76,6 @@ void core0_main(void)
 
     }
 }
-extern uint32 g_can0_rx_cnt;
-extern uint32 g_can1_rx_cnt;
-extern uint32 g_can2_rx_cnt;
 uint32 str;
 void main_loop(void *arg)
 {
