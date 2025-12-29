@@ -36,83 +36,6 @@
 #include "Can_Cfg.h"
 #include "Ifx_Console.h"                                                                            //Function   Mode   Direction  Latch  Pull Up Pull Down Drive Strength
 
-#define MBL_ACOK_MCU_IN_PIN                 DIO_CHANNEL33_[6]   //33_6      ACOK_MCU_IN                     GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_V3P3DSW_EN_PIN                  DIO_CHANNEL33_[5]   //P33_5     MCU_V3P3DSW_EN                  GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_V3P3A_DSW_PWRGD_PIN             DIO_CHANNEL34_[3]   //P34_3     V3P3A_DSW_PWRGD                 GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_PCH_DPWROK_PIN                  DIO_CHANNEL34_[1]   //P34_1     PCH_DPWROK                      GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_PM_SLP_SUS_N_PIN                DIO_CHANNEL20_[3]   //P20_3     PM_SLP_SUS_N                    GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_V5A_VR_EN_PIN                   DIO_CHANNEL33_[3]   //P33_3     V5A_EN                          GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_V5A_VR_PWRGD_PIN                DIO_CHANNEL14_[10]  //P14_10    V5A_VR_PWRGD                    GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_V3P3A_VR_PWRGD_PIN              DIO_CHANNEL13_[1]   //P13_1     V3P3A_VR_PWRGD                  GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_V3P3A_VR_EN_PIN                 DIO_CHANNEL23_[4]   //P23_4     V3P3A_EN                        GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_V1P8A_VR_EN_PIN                 DIO_CHANNEL1_[3]    //P01_3     V1P8A_EN                        GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_V1P8A_VR_PWRGD_PIN              DIO_CHANNEL22_[3]   //P02_3     VDDQ_VR_PWRGD                   GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_VCCIN_AUX_VR_EN_PIN             DIO_CHANNEL1_[7]    //P01_7     VCCIN_AUX_EN                    GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_VCCIN_AUX_VR_PWRGD_PIN          DIO_CHANNEL23_[7]   //P23_7     VCCIN_AUX_VR_PWRGD              GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_VNNEXT_BYPASS_VR_EN_PIN         DIO_CHANNEL0_[7]    //P00_7     VNNEXT_BYPASS_EN                GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_V1P05EXT_BYPASS_VR_EN_PIN       DIO_CHANNEL0_[5]    //P00_5     V1P05EXT_BYPASS_EN              GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_VCC1P24_MIPI_EN_PIN             DIO_CHANNEL20_[1]   //P20_1     MCU_VCC1P24_MIPI_EN             GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_RSMRST_PWRGD_N_PIN              DIO_CHANNEL0_[11]   //P00_11    RSMRST_PWRGD_N                  GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_ACPRESENT_PIN                   DIO_CHANNEL14_[9]   //P14_9     MCU_ACPRESENT                   GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_PM_MCU_RSMRST_N_PIN             DIO_CHANNEL33_[7]   //P33_7     PM_MCU_RSMRST_N                 GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_PWRBTN_N_PIN                    DIO_CHANNEL14_[7]   //P22_7     PWRBTN_N                        GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_PM_SLP_S4_N_PIN                 DIO_CHANNEL40_[4]   //P40_4     PM_SLP_S4_N                     GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_PM_SLP_S3_N_PIN                 DIO_CHANNEL40_[8]   //P40_8     PM_SLP_S3_N                     GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_5P0S_EN_PIN                     DIO_CHANNEL0_[4]    //P00_4     MCU_5P0S_EN                     GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_1P8S_EN_PIN                     DIO_CHANNEL14_[6]   //P14_6     MCU_1P8S_EN                     GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_V1P2S_DP_VR_EN_PIN              DIO_CHANNEL0_[2]    //P00_2     V1P2S_DP_RT_EN                  GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_3P3S_EN_PIN                     DIO_CHANNEL14_[8]   //P14_8     MCU_3P3S_EN                     GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_IMVP9_VR_EN_PIN                 DIO_CHANNEL2_[11]   //P02_11    ALL_SYS_PWRGD TO IMVP9_VR_EN    GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_H_V3P3_VCCST_PWRGD_PIN          DIO_CHANNEL22_[4]   //P22_4     H_V3P3_VCCST_PWRGD              GPIO    Digital     Out     Low                         NORMAL
-
-#define MBL_IMVP9_VR_READY_PIN              DIO_CHANNEL32_[7]   //P32_7     IMVP_VR_READY                   GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_PM_PCH_PWROK_PIN                DIO_CHANNEL20_[0]   //P20_0     MCU_PM_PCH_PWROK                GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_SYS_PWROK_PIN                   DIO_CHANNEL21_[3]   //P21_3     MCU_SYS_PWROK                   GPIO    Digital     In      n/a     No      No          NORMAL
-
-/////////Not control
-#define MBL_VDDQ_VR_PWRGD_PIN               DIO_CHANNEL2_[3]    //P02_3     VDDQ_VR_PWRGD                   GPIO    Digital     In      n/a     No      No          NORMAL
-#define MBL_V1P2S_VR_PWRGD_PIN              DIO_CHANNEL1_[6]    //P01_6     V1P2S_VR_PWRGD                  GPIO    Digital     In      n/a     No      No          NORMAL
-#define MBL_VDD2_VR_PWRGD_PIN               DIO_CHANNEL40_[13]  //P40_13    MBL_VDD2_VR_PWRGD               GPIO    Digital     In      n/a     No      No          NORMAL
-#define MBL_V3P3A_RTC_EN_N_PIN              DIO_CHANNEL33_[1]   //P33_1     MBL_V3P3A_RTC_EN_N              GPIO    Digital     In      n/a     No      No          NORMAL
-#define MBL_MCU_RTC_RST_PIN                 DIO_CHANNEL33_[2]   //P33_2     MBL_MCU_RTC_RST                 GPIO    Digital     In      n/a     No      No          NORMAL
-#define MBL_PM_SLP_S5_N_PIN                 DIO_CHANNEL40_[2]   //P40_2     MBL_PM_SLP_S5_N                 GPIO    Digital     In      n/a     No      No          NORMAL
-#define MBL_PM_SLP_S0_N_PIN                 DIO_CHANNEL40_[9]   //P40_9     MBL_PM_SLP_S0_N                 GPIO    Digital     In      n/a     No      No          NORMAL
-
-#define MBL_VCC1P05_CPU_PWRGD_PIN           DIO_CHANNEL21_[1]   //P40_2     VCC1P05_CPU_PWRGD               GPIO    Digital     In      n/a     No      No          NORMAL
-#define MBL_VCC1P8_PROC_PWRGD_PIN           DIO_CHANNEL0_[1]    //P00_1     VCC1P8_PROC_PWRGD               GPIO    Digital     In      n/a     No      No          NORMAL
-
-
-
-
 IFX_ALIGN(4) IfxCpu_syncEvent g_cpuSyncEvent = 0;
 
 void main_loop(void *arg);
@@ -163,39 +86,7 @@ void core0_main(void)
     initShellInterface();
 
 
-    //CAN0 STB LOW
-    IfxPort_setPinPadDriver(CAN0_STB_PORT, CAN0_STB_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
-    IfxPort_setPinModeOutput(CAN0_STB_PORT, CAN0_STB_PIN,IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
-    IfxPort_setPinLow(CAN0_STB_PORT, CAN0_STB_PIN);
 
-    IfxPort_setPinPadDriver(CAN0_TX_PORT, CAN0_TX_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
-    IfxPort_setPinModeOutput(CAN0_TX_PORT, CAN0_TX_PIN, IfxPort_OutputMode_pushPull,IfxPort_OutputIdx_alt2);
-    IfxPort_setPinModeInput(CAN0_RX_PORT, CAN0_RX_PIN, IfxPort_InputMode_noPullDevice);
-
-    //CAN1 STB LOW
-    IfxPort_setPinPadDriver(CAN1_STB_PORT, CAN1_STB_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
-    IfxPort_setPinModeOutput(CAN1_STB_PORT, CAN1_STB_PIN,IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
-    IfxPort_setPinLow(CAN1_STB_PORT, CAN1_STB_PIN);
-
-    IfxPort_setPinPadDriver(CAN1_TX_PORT, CAN1_TX_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
-    IfxPort_setPinModeOutput(CAN1_TX_PORT, CAN1_TX_PIN, IfxPort_OutputMode_pushPull,IfxPort_OutputIdx_alt2);
-    IfxPort_setPinModeInput(CAN1_RX_PORT, CAN1_RX_PIN, IfxPort_InputMode_noPullDevice);
-
-    //CAN2 STB LOW
-    IfxPort_setPinPadDriver(CAN2_STB_PORT, CAN2_STB_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
-    IfxPort_setPinModeOutput(CAN2_STB_PORT, CAN2_STB_PIN,IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
-    IfxPort_setPinLow(CAN2_STB_PORT, CAN2_STB_PIN);
-
-    IfxPort_setPinPadDriver(CAN2_TX_PORT, CAN2_TX_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
-    IfxPort_setPinModeOutput(CAN2_TX_PORT, CAN2_TX_PIN, IfxPort_OutputMode_pushPull,IfxPort_OutputIdx_alt2);
-    IfxPort_setPinModeInput(CAN2_RX_PORT, CAN2_RX_PIN, IfxPort_InputMode_noPullDevice);
-
-
-    ////////////////////
-    Can_NodeConfig_Set();
-    Can_init(&Can0_Cfg);
-    Can_init(&Can1_Cfg);
-    Can_init(&Can2_Cfg);
 
     sys_thread_new("task_app_PWR_SQ",task_app_PWR_SQ,NULL,configMINIMAL_STACK_SIZE,4);
     xTaskCreate(main_loop, "main_loop", configMINIMAL_STACK_SIZE, NULL, 6, NULL);
@@ -218,11 +109,42 @@ void main_loop(void *arg)
     TickType_t lastCanTick0 = xTaskGetTickCount();
     TickType_t lastCanTick1 = xTaskGetTickCount();
     TickType_t lastCanTick2 = xTaskGetTickCount();
-    uint32 canTxCounter = 0;
+
     uint32 lastRxMarker = 0;
     uint32 lastRxCnt0 = 0;
     uint32 lastRxCnt1 = 0;
     uint32 lastRxCnt2 = 0;
+
+    //CAN0 STB LOW
+    IfxPort_setPinPadDriver(CAN0_STB_PORT, CAN0_STB_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN0_STB_PORT, CAN0_STB_PIN,IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
+    IfxPort_setPinLow(CAN0_STB_PORT, CAN0_STB_PIN);
+    IfxPort_setPinPadDriver(CAN0_TX_PORT, CAN0_TX_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN0_TX_PORT, CAN0_TX_PIN, IfxPort_OutputMode_pushPull,IfxPort_OutputIdx_alt2);
+    IfxPort_setPinModeInput(CAN0_RX_PORT, CAN0_RX_PIN, IfxPort_InputMode_noPullDevice);
+
+    //CAN1 STB LOW
+    IfxPort_setPinPadDriver(CAN1_STB_PORT, CAN1_STB_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN1_STB_PORT, CAN1_STB_PIN,IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
+    IfxPort_setPinLow(CAN1_STB_PORT, CAN1_STB_PIN);
+    IfxPort_setPinPadDriver(CAN1_TX_PORT, CAN1_TX_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN1_TX_PORT, CAN1_TX_PIN, IfxPort_OutputMode_pushPull,IfxPort_OutputIdx_alt2);
+    IfxPort_setPinModeInput(CAN1_RX_PORT, CAN1_RX_PIN, IfxPort_InputMode_noPullDevice);
+
+    //CAN2 STB LOW
+    IfxPort_setPinPadDriver(CAN2_STB_PORT, CAN2_STB_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN2_STB_PORT, CAN2_STB_PIN,IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
+    IfxPort_setPinLow(CAN2_STB_PORT, CAN2_STB_PIN);
+    IfxPort_setPinPadDriver(CAN2_TX_PORT, CAN2_TX_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN2_TX_PORT, CAN2_TX_PIN, IfxPort_OutputMode_pushPull,IfxPort_OutputIdx_alt2);
+    IfxPort_setPinModeInput(CAN2_RX_PORT, CAN2_RX_PIN, IfxPort_InputMode_noPullDevice);
+
+
+    ////////////////////
+    Can_NodeConfig_Set();
+    Can_init(&Can0_Cfg);
+    Can_init(&Can1_Cfg);
+    Can_init(&Can2_Cfg);
 
     while(1)
     {
@@ -233,7 +155,6 @@ void main_loop(void *arg)
        //*
         if((xTaskGetTickCount() - lastCanTick0) >= pdMS_TO_TICKS(1000))
         {
-            canTxCounter++;
             Can0_Cfg.Can_Ch->txMsg.messageId = 0x201;
             Can0_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
             Can0_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_standard;
@@ -256,7 +177,6 @@ void main_loop(void *arg)
         //*
         if((xTaskGetTickCount() - lastCanTick1) >= pdMS_TO_TICKS(1000))
         {
-            canTxCounter++;
             Can1_Cfg.Can_Ch->txMsg.messageId = 0x202;
             Can1_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
             Can1_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_standard;
@@ -279,7 +199,6 @@ void main_loop(void *arg)
         //*
         if((xTaskGetTickCount() - lastCanTick2) >= pdMS_TO_TICKS(1000))
         {
-            canTxCounter++;
             Can2_Cfg.Can_Ch->txMsg.messageId = 0x203;
             Can2_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
             Can2_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_standard;
@@ -305,263 +224,3 @@ void main_loop(void *arg)
     }
 }
 
-Timer_Configuration PwrSQ_Wait;
-uint32 GPIO_POWER_Timer=0;
-uint8 SQ_STAGE=0;
-uint32 SQ_STAGE_TIME[20];
-uint32 SQ_STAGE_TIME_ADD1=0;
-uint8 read_val=0;
-uint8 read_value;
-
-void trigger_set(PORT_PIN_Info *DioChannel_info)
-{
-
-    if(read_value==0)
-    {
-        GPIO_GetPinState(DioChannel_info,&read_value);
-    }
-
-    if(read_value==1)
-    {
-        SQ_STAGE++;
-        SQ_STAGE_TIME[SQ_STAGE]=GPIO_POWER_Timer;
-        //Port_Read(pin);                 //0ms MBL_RSMRST_PWRGD_N_PIN,Read
-        read_value=0;
-    }
-
-}
-
-
-
-
-
-
-
-
-void Pwr_SQgpio(void *arg)
-{
-    //EventBits_t Pwr_event_bits;
-    //uint8_t read_value=0;
-    //MBL_ACOK_MCU_IN_InputEnable();
-    GPIO_SetPinMode(&MBL_ACOK_MCU_IN_PIN,IfxPort_Mode_inputNoPullDevice); //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-    //Port_Control(MBL_ACOK_MCU_IN_PIN,Set);        //10ms MBL_V3P3A_RTC_EN_N_PIN,Clear
-
-    while(1)
-    {
-        if(PwrSQ_Wait.Flag==Wait_Standby)
-        {
-            TC1_Timer_Wait_1mS(&PwrSQ_Wait,1);
-        }
-        else if(PwrSQ_Wait.Flag==Wait_Runnig)
-        {
-            TC1_Timer_Wait_1mS(&PwrSQ_Wait,1);
-        }
-        else if(PwrSQ_Wait.Flag==Wait_Complete)
-        {
-            GPIO_POWER_Timer++;
-            PwrSQ_Wait.Flag=Wait_Standby;
-            if(SQ_STAGE==0)
-            {
-                trigger_set(&MBL_ACOK_MCU_IN_PIN); //MBL_ACOK_MCU_IN_PIN
-            }
-
-            else if(SQ_STAGE==1)
-            {
-                if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+5000)
-                {
-                    GPIO_SetPinState(&MBL_V3P3DSW_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //GPIO_SetPinMode(MBL_V3P3DSW_EN_PIN,IfxPort_Mode_outputPushPullGeneral); //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-
-
-                }
-
-                else if(GPIO_POWER_Timer>SQ_STAGE_TIME[SQ_STAGE]+5000)
-                {
-                    trigger_set(&MBL_V3P3A_DSW_PWRGD_PIN);
-                }
-            }
-
-            else if(SQ_STAGE==2)
-            {
-                if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+10)
-                {
-
-                    GPIO_SetPinMode(&MBL_PCH_DPWROK_PIN,IfxPort_Mode_outputPushPullGeneral); //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    GPIO_SetPinState(&MBL_PCH_DPWROK_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-
-                    //MBL_PCH_DPWROK_OutputEnable();
-                    //Port_Control(MBL_PCH_DPWROK_PIN,Set);           //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-                else if(GPIO_POWER_Timer>SQ_STAGE_TIME[SQ_STAGE]+10)
-                {
-                    trigger_set(&MBL_PM_SLP_SUS_N_PIN);
-                    if(SQ_STAGE==3)
-                    {
-                        GPIO_SetPinState(&MBL_V5A_VR_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                        //Port_Control(MBL_V5A_VR_EN_PIN,Set);            //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    }
-                }
-
-            }
-            else if(SQ_STAGE==3)
-            {
-                trigger_set(&MBL_V5A_VR_PWRGD_PIN);
-                if(SQ_STAGE==4)
-                {
-                    GPIO_SetPinState(&MBL_V3P3A_VR_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //Port_Control(MBL_V3P3A_VR_EN_PIN,Set);          //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-            }
-            else if(SQ_STAGE==4)
-            {
-                trigger_set(&MBL_V3P3A_VR_PWRGD_PIN);
-                if(SQ_STAGE==5)
-                {
-                    GPIO_SetPinState(&MBL_V1P8A_VR_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //Port_Control(MBL_V1P8A_VR_EN_PIN,Set);          //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-            }
-            else if(SQ_STAGE==5)
-            {
-                trigger_set(&MBL_V1P8A_VR_PWRGD_PIN);
-                if(SQ_STAGE==6)
-                {
-                    GPIO_SetPinState(&MBL_VCCIN_AUX_VR_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //Port_Control(MBL_VCCIN_AUX_VR_EN_PIN,Set);          //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-            }
-            else if(SQ_STAGE==6)
-            {
-                trigger_set(&MBL_VCCIN_AUX_VR_PWRGD_PIN);
-                if(SQ_STAGE==7)
-                {
-                    GPIO_SetPinState(&MBL_VNNEXT_BYPASS_VR_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                   // Port_Control(MBL_VNNEXT_BYPASS_VR_EN_PIN,Set);          //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-            }
-            else if(SQ_STAGE==7)
-            {
-                if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+1)
-                {
-                    GPIO_SetPinState(&MBL_V1P05EXT_BYPASS_VR_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    GPIO_SetPinState(&MBL_VCC1P24_MIPI_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //Port_Control(MBL_V1P05EXT_BYPASS_VR_EN_PIN,Set);            //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //Port_Control(MBL_VCC1P24_MIPI_EN_PIN,Set);          //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-                else if(GPIO_POWER_Timer>SQ_STAGE_TIME[SQ_STAGE]+1)
-                {
-                    trigger_set(&MBL_RSMRST_PWRGD_N_PIN);
-                    if(SQ_STAGE==8)
-                    {
-                        GPIO_SetPinMode(&MBL_ACPRESENT_PIN,IfxPort_Mode_inputNoPullDevice);
-                        GPIO_SetPinState(&MBL_ACPRESENT_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                        //MBL_ACPRESENT_InputEnable();
-                        //Port_Control(MBL_ACPRESENT_PIN,Set);            //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    }
-                }
-            }
-            else if(SQ_STAGE==8)
-            {
-                if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+10)
-                {
-                    GPIO_SetPinState(&MBL_PM_MCU_RSMRST_N_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //Port_Control(MBL_PM_MCU_RSMRST_N_PIN,Set);          //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-                else if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+15)
-                {
-                    //GPIO_SetPinState(&MBL_PWRBTN_N_PIN,IfxPort_State_low);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    GPIO_SetPinMode(&MBL_PWRBTN_N_PIN,IfxPort_Mode_outputPushPullGeneral);
-                    GPIO_SetPinState(&MBL_PWRBTN_N_PIN,IfxPort_State_low);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //Port_Control(MBL_PWRBTN_N_PIN,Clear);           //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //MBL_PWRBTN_N_OutputEnable();
-                }
-                else if(GPIO_POWER_Timer>SQ_STAGE_TIME[SQ_STAGE]+15)
-                {
-                    trigger_set(&MBL_PM_SLP_S4_N_PIN);
-                }
-            }
-
-            else if(SQ_STAGE==9)
-            {
-                trigger_set(&MBL_PM_SLP_S3_N_PIN);
-            }
-            else if(SQ_STAGE==10)
-            {
-                if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+350)
-                {
-                    GPIO_SetPinState(&MBL_5P0S_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    GPIO_SetPinState(&MBL_1P8S_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-
-                    //Port_Control(MBL_5P0S_EN_PIN,Set);          //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //Port_Control(MBL_1P8S_EN_PIN,Set);          //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-                else if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+352)
-                {
-                    GPIO_SetPinState(&MBL_V1P2S_DP_VR_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //Port_Control(MBL_V1P2S_DP_VR_EN_PIN,Set);           //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-                else if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+357)
-                {
-                    GPIO_SetPinState(&MBL_3P3S_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //Port_Control(MBL_3P3S_EN_PIN,Set);          //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-                else if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+361)
-                {
-                    GPIO_SetPinState(&MBL_IMVP9_VR_EN_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //Port_Control(MBL_IMVP9_VR_EN_PIN,Set);          //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-                else if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+363)
-                {
-                    GPIO_SetPinState(&MBL_H_V3P3_VCCST_PWRGD_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //Port_Control(MBL_H_V3P3_VCCST_PWRGD_PIN,Set);           //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-                else if(GPIO_POWER_Timer>SQ_STAGE_TIME[SQ_STAGE]+363)
-                {
-                    trigger_set(&MBL_IMVP9_VR_READY_PIN);
-                }
-
-            }
-            else if(SQ_STAGE==11)
-            {
-                if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+5)
-                {
-                    GPIO_SetPinState(&MBL_PM_PCH_PWROK_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    GPIO_SetPinMode(&MBL_PM_PCH_PWROK_PIN,IfxPort_Mode_outputPushPullGeneral);
-                    GPIO_SetPinState(&MBL_PM_PCH_PWROK_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-
-
-                    //Port_Control(MBL_PM_PCH_PWROK_PIN,Set);         //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //MBL_PM_PCH_PWROK_OutputEnable();
-                }
-                if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+6)
-                {
-                    GPIO_SetPinState(&MBL_SYS_PWROK_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    GPIO_SetPinMode(&MBL_SYS_PWROK_PIN,IfxPort_Mode_outputPushPullGeneral);
-                    GPIO_SetPinState(&MBL_SYS_PWROK_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-
-                    //Port_Control(MBL_SYS_PWROK_PIN,Set);            //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                    //MBL_SYS_PWROK_OutputEnable();
-                }
-                else if(GPIO_POWER_Timer==SQ_STAGE_TIME[SQ_STAGE]+600)
-                {
-                    //Pwr_SQ_Save();
-                    vTaskDelete(NULL);
-                }
-            }
-
-            if(SQ_STAGE>=8)
-            {
-                if(GPIO_POWER_Timer==SQ_STAGE_TIME[8]+515)
-                {
-
-                    GPIO_SetPinMode(&MBL_PWRBTN_N_PIN,IfxPort_Mode_inputNoPullDevice);
-                    GPIO_SetPinState(&MBL_PWRBTN_N_PIN,IfxPort_State_high);                //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-
-
-                    //MBL_PWRBTN_N_InputEnable();
-                    //Port_Control(MBL_PWRBTN_N_PIN,Set);         //10ms MBL_PM_MCU_RSMRST_N_PIN,Set
-                }
-            }
-        }
-    }
-}
