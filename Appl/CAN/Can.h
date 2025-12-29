@@ -136,6 +136,7 @@ typedef struct{
 /*********************************************************************************************************************/
 
 void Can_init(Can_Node_Info *Can_Info);
+void Can_Task(void *arg);
 //uint8 transmitCanMessage(uint8 can_sel, uint32 can_id);
 //uint8 CanMessage(McmcanType *g_mcmcan_sel,uint8 Can_num);
 

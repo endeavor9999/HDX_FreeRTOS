@@ -130,5 +130,3 @@ void Can_init(Can_Node_Info *Can_Info){
 
 
 }
-
-

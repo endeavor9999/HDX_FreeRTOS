@@ -247,7 +247,121 @@ void ARS408_Setting(){
 
 
 
+void Can_Task(void *arg)
+{
+    TickType_t lastCanTick0 = xTaskGetTickCount();
+    TickType_t lastCanTick1 = xTaskGetTickCount();
+    TickType_t lastCanTick2 = xTaskGetTickCount();
 
+    uint32 lastRxMarker = 0;
+    uint32 lastRxCnt0 = 0;
+    uint32 lastRxCnt1 = 0;
+    uint32 lastRxCnt2 = 0;
+
+    //CAN0 STB LOW
+    IfxPort_setPinPadDriver(CAN0_STB_PORT, CAN0_STB_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN0_STB_PORT, CAN0_STB_PIN,IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
+    IfxPort_setPinLow(CAN0_STB_PORT, CAN0_STB_PIN);
+    IfxPort_setPinPadDriver(CAN0_TX_PORT, CAN0_TX_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN0_TX_PORT, CAN0_TX_PIN, IfxPort_OutputMode_pushPull,IfxPort_OutputIdx_alt2);
+    IfxPort_setPinModeInput(CAN0_RX_PORT, CAN0_RX_PIN, IfxPort_InputMode_noPullDevice);
+
+    //CAN1 STB LOW
+    IfxPort_setPinPadDriver(CAN1_STB_PORT, CAN1_STB_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN1_STB_PORT, CAN1_STB_PIN,IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
+    IfxPort_setPinLow(CAN1_STB_PORT, CAN1_STB_PIN);
+    IfxPort_setPinPadDriver(CAN1_TX_PORT, CAN1_TX_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN1_TX_PORT, CAN1_TX_PIN, IfxPort_OutputMode_pushPull,IfxPort_OutputIdx_alt2);
+    IfxPort_setPinModeInput(CAN1_RX_PORT, CAN1_RX_PIN, IfxPort_InputMode_noPullDevice);
+
+    //CAN2 STB LOW
+    IfxPort_setPinPadDriver(CAN2_STB_PORT, CAN2_STB_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN2_STB_PORT, CAN2_STB_PIN,IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
+    IfxPort_setPinLow(CAN2_STB_PORT, CAN2_STB_PIN);
+    IfxPort_setPinPadDriver(CAN2_TX_PORT, CAN2_TX_PIN, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_setPinModeOutput(CAN2_TX_PORT, CAN2_TX_PIN, IfxPort_OutputMode_pushPull,IfxPort_OutputIdx_alt2);
+    IfxPort_setPinModeInput(CAN2_RX_PORT, CAN2_RX_PIN, IfxPort_InputMode_noPullDevice);
+
+
+    ////////////////////
+    Can_NodeConfig_Set();
+    Can_init(&Can0_Cfg);
+    Can_init(&Can1_Cfg);
+    Can_init(&Can2_Cfg);
+
+    while(1)
+    {
+        //*
+        if((xTaskGetTickCount() - lastCanTick0) >= pdMS_TO_TICKS(1000))
+        {
+            Can0_Cfg.Can_Ch->txMsg.messageId = 0x201;
+            Can0_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
+            Can0_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_standard;
+            Can0_Cfg.Can_Ch->txData[0] = 0x01010101U;
+            Can0_Cfg.Can_Ch->txData[1] = 0x01010101U;
+            IfxCan_Can_sendMessage(&Can0_Cfg.Can_Ch->canSrcNode, &Can0_Cfg.Can_Ch->txMsg,
+                                   &Can0_Cfg.Can_Ch->txData[0]);
+            lastCanTick0 = xTaskGetTickCount();
+            Ifx_Console_print("TEST SEND0\r\n");
+        }
+        if (lastRxCnt0 != g_can0_rx_cnt)
+        {
+            lastRxCnt0 = g_can0_rx_cnt;
+            Ifx_Console_print("TEST0 \r\n");
+            lastRxMarker = Recive_Data_0x201[0][0];
+            Ifx_Console_print("CAN RX 0x201: %08X %08X (cnt=%u)\r\n",
+                              Recive_Data_0x201[0][0], Recive_Data_0x201[0][1],lastRxCnt0);
+        }
+        // */
+        //*
+        if((xTaskGetTickCount() - lastCanTick1) >= pdMS_TO_TICKS(1000))
+        {
+            Can1_Cfg.Can_Ch->txMsg.messageId = 0x202;
+            Can1_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
+            Can1_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_standard;
+            Can1_Cfg.Can_Ch->txData[0] = 0x01010101U;
+            Can1_Cfg.Can_Ch->txData[1] = 0x01010101U;
+            IfxCan_Can_sendMessage(&Can1_Cfg.Can_Ch->canSrcNode, &Can1_Cfg.Can_Ch->txMsg,
+                                   &Can1_Cfg.Can_Ch->txData[0]);
+            lastCanTick1 = xTaskGetTickCount();
+            Ifx_Console_print("TEST SEND1\r\n");
+        }
+        if (lastRxCnt1 != g_can1_rx_cnt)
+        {
+            lastRxCnt1 = g_can1_rx_cnt;
+            Ifx_Console_print("TEST1 \r\n");
+            lastRxMarker = Recive_Data_0x201[0][0];
+            Ifx_Console_print("CAN RX 0x201: %08X %08X (cnt=%u)\r\n",
+                              Recive_Data_0x201[1][0], Recive_Data_0x201[1][1],lastRxCnt1);
+        }
+        // */
+        //*
+        if((xTaskGetTickCount() - lastCanTick2) >= pdMS_TO_TICKS(1000))
+        {
+            Can2_Cfg.Can_Ch->txMsg.messageId = 0x203;
+            Can2_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
+            Can2_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_standard;
+            Can2_Cfg.Can_Ch->txData[0] = 0x01010101U;
+            Can2_Cfg.Can_Ch->txData[1] = 0x01010101U;
+            IfxCan_Can_sendMessage(&Can2_Cfg.Can_Ch->canSrcNode, &Can2_Cfg.Can_Ch->txMsg,
+                                   &Can2_Cfg.Can_Ch->txData[0]);
+            lastCanTick2 = xTaskGetTickCount();
+            Ifx_Console_print("TEST SEND2\r\n");
+        }
+        if (lastRxCnt2 != g_can2_rx_cnt)
+        {
+            lastRxCnt2 = g_can2_rx_cnt;
+            Ifx_Console_print("TEST2 \r\n");
+            lastRxMarker = Recive_Data_0x201[0][0];
+            Ifx_Console_print("CAN RX 0x201: %08X %08X (cnt=%u)\r\n",
+                              Recive_Data_0x201[2][0], Recive_Data_0x201[2][1],lastRxCnt2);
+        }
+        // */
+        //Ifx_Console_print("TEST \r\n");
+        //vTaskDelay(100);
+        vTaskDelay(pdMS_TO_TICKS(10));
+    }
+}
 
 
 
