@@ -64,10 +64,8 @@ void core0_main(void)
     initShellInterface();
 
     sys_thread_new("task_app_PWR_SQ",task_app_PWR_SQ,NULL,configMINIMAL_STACK_SIZE,4);
-    xTaskCreate(main_loop, "main_loop", configMINIMAL_STACK_SIZE, NULL, 4, NULL);
-    xTaskCreate(Can_Task, "Can_Task", configMINIMAL_STACK_SIZE, NULL, 4, NULL);
-    //sys_thread_new("Pwr_SQgpio",Pwr_SQgpio,NULL,512,4);
-    //sys_thread_new("main_loop",main_loop,NULL,1024,4);
+    sys_thread_new("main_loop",main_loop,NULL,configMINIMAL_STACK_SIZE,4);
+    sys_thread_new("Can_Task",Can_Task,NULL,configMINIMAL_STACK_SIZE,4);
     vTaskStartScheduler();
 
     while(1)
