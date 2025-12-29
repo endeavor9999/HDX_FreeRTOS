@@ -230,7 +230,7 @@ void main_loop(void *arg)
         runShellInterface(); /* Run the application shell */
 
 
-        /*
+       //*
         if((xTaskGetTickCount() - lastCanTick0) >= pdMS_TO_TICKS(1000))
         {
             canTxCounter++;
@@ -253,7 +253,7 @@ void main_loop(void *arg)
                               Recive_Data_0x201[0][0], Recive_Data_0x201[0][1],lastRxCnt0);
         }
         // */
-        /*
+        //*
         if((xTaskGetTickCount() - lastCanTick1) >= pdMS_TO_TICKS(1000))
         {
             canTxCounter++;
@@ -273,14 +273,14 @@ void main_loop(void *arg)
             Ifx_Console_print("TEST1 \r\n");
             lastRxMarker = Recive_Data_0x201[0][0];
             Ifx_Console_print("CAN RX 0x201: %08X %08X (cnt=%u)\r\n",
-                              Recive_Data_0x201[0][0], Recive_Data_0x201[0][1],lastRxCnt1);
+                              Recive_Data_0x201[1][0], Recive_Data_0x201[1][1],lastRxCnt1);
         }
         // */
         //*
         if((xTaskGetTickCount() - lastCanTick2) >= pdMS_TO_TICKS(1000))
         {
             canTxCounter++;
-            Can1_Cfg.Can_Ch->txMsg.messageId = 0x203;
+            Can2_Cfg.Can_Ch->txMsg.messageId = 0x203;
             Can2_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
             Can2_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_standard;
             Can2_Cfg.Can_Ch->txData[0] = 0x12345678U;
@@ -296,7 +296,7 @@ void main_loop(void *arg)
             Ifx_Console_print("TEST2 \r\n");
             lastRxMarker = Recive_Data_0x201[0][0];
             Ifx_Console_print("CAN RX 0x201: %08X %08X (cnt=%u)\r\n",
-                              Recive_Data_0x201[0][0], Recive_Data_0x201[0][1],lastRxCnt2);
+                              Recive_Data_0x201[2][0], Recive_Data_0x201[2][1],lastRxCnt2);
         }
         // */
         //Ifx_Console_print("TEST \r\n");
