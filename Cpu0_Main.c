@@ -34,6 +34,7 @@
 
 #include "PWR_SQ.h"
 #include "Can_Cfg.h"
+#include "I2C_cfg.h"
 #include "Ifx_Console.h"                                                                            //Function   Mode   Direction  Latch  Pull Up Pull Down Drive Strength
 
 IFX_ALIGN(4) IfxCpu_syncEvent g_cpuSyncEvent = 0;
