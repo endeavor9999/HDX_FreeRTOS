@@ -44,7 +44,7 @@ void Pwr_SQgpio(void *arg);
 
 uint32 sda=0;
 
-
+static void logIna226Measurements(void);
 
 void core0_main(void)
 {
@@ -63,10 +63,10 @@ void core0_main(void)
     initGpt12Timer();
 
     initShellInterface();
-
+    I2c_Init();
     sys_thread_new("task_app_PWR_SQ",task_app_PWR_SQ,NULL,configMINIMAL_STACK_SIZE,4);
     sys_thread_new("main_loop",main_loop,NULL,configMINIMAL_STACK_SIZE,4);
-    sys_thread_new("Can_Task",Can_Task,NULL,configMINIMAL_STACK_SIZE,4);
+    //sys_thread_new("Can_Task",Can_Task,NULL,configMINIMAL_STACK_SIZE,4);
     vTaskStartScheduler();
 
     while(1)
@@ -84,8 +84,72 @@ void main_loop(void *arg)
     {
         str++;
         runShellInterface(); /* Run the application shell */
-
+        logIna226Measurements();
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
+
+static void logIna226Measurements(void)
+{
+    float32 current = 0;
+    float32 voltage = 0;
+    boolean currentResult = FALSE;
+    boolean voltageResult = FALSE;
+
+    TCA9548_Channel_Sel(&I2cConf_I2cCh0_TCA9548_ADDR_0x70, TCA9548_Channel_0);
+    currentResult = Read_INA226_Current_Voltage(&I2cConf_I2cCh0_INA226_ADDR_0x40, INA226_Current, &current);
+    voltageResult = Read_INA226_Current_Voltage(&I2cConf_I2cCh0_INA226_ADDR_0x40, INA226_Voltage, &voltage);
+
+    if((currentResult == TRUE) && (voltageResult == TRUE))
+    {
+        Ifx_Console_print("INA226 CH0 -> Current: %.3f A, Voltage: %.3f V\r\n", current, voltage);
+    }
+    else
+    {
+        Ifx_Console_print("INA226 CH0 read failed\r\n");
+    }
+
+    TCA9548_Channel_Sel(&I2cConf_I2cCh0_TCA9548_ADDR_0x70, TCA9548_Channel_1);
+    currentResult = Read_INA226_Current_Voltage(&I2cConf_I2cCh0_INA226_ADDR_0x40, INA226_Current, &current);
+    voltageResult = Read_INA226_Current_Voltage(&I2cConf_I2cCh0_INA226_ADDR_0x40, INA226_Voltage, &voltage);
+
+    if((currentResult == TRUE) && (voltageResult == TRUE))
+    {
+        Ifx_Console_print("INA226 CH1 -> Current: %.3f A, Voltage: %.3f V\r\n", current, voltage);
+    }
+    else
+    {
+        Ifx_Console_print("INA226 CH1 read failed\r\n");
+    }
+
+    TCA9548_Channel_Sel(&I2cConf_I2cCh0_TCA9548_ADDR_0x70, TCA9548_Channel_2);
+    currentResult = Read_INA226_Current_Voltage(&I2cConf_I2cCh0_INA226_ADDR_0x40, INA226_Current, &current);
+    voltageResult = Read_INA226_Current_Voltage(&I2cConf_I2cCh0_INA226_ADDR_0x40, INA226_Voltage, &voltage);
+
+    if((currentResult == TRUE) && (voltageResult == TRUE))
+    {
+        Ifx_Console_print("INA226 CH2 -> Current: %.3f A, Voltage: %.3f V\r\n", current, voltage);
+    }
+    else
+    {
+        Ifx_Console_print("INA226 CH2 read failed\r\n");
+    }
+
+    TCA9548_Channel_Sel(&I2cConf_I2cCh0_TCA9548_ADDR_0x70, TCA9548_Channel_3);
+    currentResult = Read_INA226_Current_Voltage(&I2cConf_I2cCh0_INA226_ADDR_0x40, INA226_Current, &current);
+    voltageResult = Read_INA226_Current_Voltage(&I2cConf_I2cCh0_INA226_ADDR_0x40, INA226_Voltage, &voltage);
+
+    if((currentResult == TRUE) && (voltageResult == TRUE))
+    {
+        Ifx_Console_print("INA226 CH3 -> Current: %.3f A, Voltage: %.3f V\r\n", current, voltage);
+    }
+    else
+    {
+        Ifx_Console_print("INA226 CH3 read failed\r\n");
+    }
+
+
+
+}
+
 
