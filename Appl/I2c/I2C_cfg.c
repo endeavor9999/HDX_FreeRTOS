@@ -57,150 +57,48 @@ IfxI2c_Pins I2C1_MCP_PINS =
 
 GpioI2c_Pins i2c_Module1_PINS =
 {
-        &DioConf_DioChannel_11_13,
-        &DioConf_DioChannel_11_14,
+        &DioConf_DioChannel_11_13, //SDA
+        &DioConf_DioChannel_11_14, //SCL
         IfxPort_PadDriver_ttlSpeed4
-
 };
 
 GpioI2c_Pins i2c_Module0_PINS =
 {
-        &DioConf_DioChannel_13_1,
-        &DioConf_DioChannel_13_2,
+        &DioConf_DioChannel_13_1, //SCL
+        &DioConf_DioChannel_13_2, //SDA
         IfxPort_PadDriver_ttlSpeed4
 };
 
-/*-----------------------------------------------------I2cCh1-------------------------------------------------------*/
-/*-------------------------------------------------I2cCh1_TCA9548 --------------------------------------------------*/
-i2c_Configuration I2cConf_I2cCh1_TCA9548_ADDR_0x70;
-IfxI2c_I2c_Device Dev_I2cCh1_TCA9548_ADDR_0x70;
-/*-------------------------------------------------I2cCh1_INA226 ---------------------------------------------------*/
-i2c_Configuration I2cConf_I2cCh1_INA226_ADDR_0x40;
-IfxI2c_I2c_Device Dev_I2cCh1_INA226_ADDR_0x40;
-/*-------------------------------------------------I2cCh1_ADS7138 --------------------------------------------------*/
-i2c_Configuration I2cConf_I2cCh1_ADS7138_ADDR_0x10;
-IfxI2c_I2c_Device Dev_I2cCh1_ADS7138_ADDR_0x10;
-/*------------------------------------------------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------------------------------------------------*/
 
 
 
 /*-----------------------------------------------------I2cCh0-------------------------------------------------------*/
-/*-------------------------------------------------I2cCh0_TCA9548 --------------------------------------------------*/
+/*-------------------------------------------------I2cCh0_TCA9548-1-------------------------------------------------*/
 i2c_Configuration I2cConf_I2cCh0_TCA9548_ADDR_0x70;
 IfxI2c_I2c_Device Dev_I2cCh0_TCA9548_ADDR_0x70;
 /*-------------------------------------------------I2cCh0_INA226 ---------------------------------------------------*/
 i2c_Configuration I2cConf_I2cCh0_INA226_ADDR_0x40;
 IfxI2c_I2c_Device Dev_I2cCh0_INA226_ADDR_0x40;
-/*-------------------------------------------------I2cCh0_ADS7138 --------------------------------------------------*/
-i2c_Configuration I2cConf_I2cCh0_ADS7138_ADDR_0x10;
-IfxI2c_I2c_Device Dev_I2cCh0_ADS7138_ADDR_0x10;
-/*-------------------------------------------------I2cCh0_MAX20087 -------------------------------------------------*/
-i2c_Configuration I2cConf_I2cCh0_MAX20087_ADDR_0x28;
-IfxI2c_I2c_Device Dev_I2cCh0_MAX20087_ADDR_0x28;
+/*-------------------------------------------------I2cCh0_STS31A ---------------------------------------------------*/
+i2c_Configuration I2cConf_I2cCh0_STS31A_ADDR_0x4A;
+IfxI2c_I2c_Device Dev_I2cCh0_STS31A_ADDR_0x4A;
+/*------------------------------------------------I2cCh0_TCA9548-2--------------------------------------------------*/
+i2c_Configuration I2cConf_I2cCh0_TCA9548_ADDR_0x71;
+IfxI2c_I2c_Device Dev_I2cCh0_TCA9548_ADDR_0x71;
+/*-------------------------------------------------I2cCh0_STS31A ---------------------------------------------------*/
+i2c_Configuration I2cConf_I2cCh0_STS31A_ADDR_0x4B;
+IfxI2c_I2c_Device Dev_I2cCh0_STS31A_ADDR_0x4B;
+/*------------------------------------------------------------------------------------------------------------------*/
 
-i2c_Configuration I2cConf_I2cCh0_MAX20087_ADDR_0x29;
-IfxI2c_I2c_Device Dev_I2cCh0_MAX20087_ADDR_0x29;
+
+/*-----------------------------------------------------I2cCh1-------------------------------------------------------*/
+/*-------------------------------------------------I2cCh1_TCA9548 --------------------------------------------------*/
+
 /*------------------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------------------*/
-char VMON1_String[9][17]=
-    {
-        "V_88Q6113_A_1P05",
-        "V_88Q6113_A_1P5 ",
-        "V_88Q6113_A_1P8 ",
-        "V_88Q6113_A_3P3 ",
-        "V_88Q4364_A_0P8 ",
-        "V_88Q4364_A_1P2 ",
-        "V_88Q4364_A_3P3 ",
-        "V_PHY_A_3P3     "
-    };
 
-char VMON2_String[9][17]=
-    {
-        "V_88Q6113_B_1P05",
-        "V_88Q6113_B_1P5 ",
-        "V_88Q6113_B_1P8 ",
-        "V_88Q6113_B_3P3 ",
-        "V_88Q4364_B_0P8 ",
-        "V_88Q4364_B_1P2 ",
-        "V_88Q4364_B_3P3 ",
-        "V_PHY_B_3P3     "
-    };
-
-char VMON3_String[9][17]=
-    {
-        "V_KSZ9897R_1P2  ",
-        "V_KSZ9897R_2P5  ",
-        "V_KSZ9897R_3P3  ",
-        "V_MAX9296_1P0   ",
-        "V_MAX9296_1P2   ",
-        "V_MAX9296_1P8   ",
-        "V_RG500Q_3P8    ",
-        "V_GNSS_3P3      "
-
-    };
-
-char VMON4_String[9][18]=
-    {
-        "V_PM400xxB_A_0P84",
-        "V_PM400xxB_A_1P8 ",
-        "V_PM400xxB_B_0P84",
-        "V_PM400xxB_B_1P8 "
-
-    };
-char PMON_1_6_String[6][11]=
-    {
-        "   V_IN   ",
-        "V_SA_A_3P3",
-        "V_SA_B_3P3",
-        "V_ETH_A_5V",
-        "V_ETH_B_5V",
-        "V_VIP_12V ",
-
-    };
-
-char PMON_7_13_String[6][13]=
-    {
-        "V_CAM_12V   ",
-        "V_MODEM_12V ",
-        "V_GNSS_12V  ",
-        "V_NPU_A1_12V",
-        "V_NPU_B1_12V",
-     };
-
-char PMON_10_11_String[2][13]=
-    {
-        "V_PCIE_A_12V",
-        "V_PCIE_B_12V",
-
-     };
 
 void I2c_Init(void){
-
-
-
-
-
-
-
-
-    /*-----------------------------------------------------I2cCh1---------------------------------------------------*/
-#ifdef GPIO_I2C_Enable
-    I2c_Ch1.i2c=&I2C1_Gpio;
-    I2c_Ch1.baudrate=I2C_BAUDRATE;
-    GpioI2c_initSclSdaPin(&i2c_Module1_PINS);
-#else
-    init_I2C1_module(&I2c_Ch1, &I2C1_MCP_PINS, I2C_BAUDRATE);
-#endif
-    SetI2cDevinfo(&I2cConf_I2cCh1_TCA9548_ADDR_0x70, &I2c_Ch1, &Dev_I2cCh1_TCA9548_ADDR_0x70, 0x70,&i2c_Module1_PINS);
-    init_I2C_module_addr(&I2cConf_I2cCh1_TCA9548_ADDR_0x70);
-
-    SetI2cDevinfo(&I2cConf_I2cCh1_INA226_ADDR_0x40, &I2c_Ch1, &Dev_I2cCh1_INA226_ADDR_0x40, 0x40,&i2c_Module1_PINS);
-    init_I2C_module_addr(&I2cConf_I2cCh1_INA226_ADDR_0x40);
-
-    SetI2cDevinfo(&I2cConf_I2cCh1_ADS7138_ADDR_0x10, &I2c_Ch1, &Dev_I2cCh1_ADS7138_ADDR_0x10, 0x10,&i2c_Module1_PINS);
-    init_I2C_module_addr(&I2cConf_I2cCh1_ADS7138_ADDR_0x10);
-
 
     /*-----------------------------------------------------I2cCh0---------------------------------------------------*/
 #ifdef GPIO_I2C_Enable
@@ -216,46 +114,18 @@ void I2c_Init(void){
     SetI2cDevinfo(&I2cConf_I2cCh0_INA226_ADDR_0x40, &I2c_Ch0, &Dev_I2cCh0_INA226_ADDR_0x40, 0x40,&i2c_Module0_PINS);
     init_I2C_module_addr(&I2cConf_I2cCh0_INA226_ADDR_0x40);
 
-    SetI2cDevinfo(&I2cConf_I2cCh0_ADS7138_ADDR_0x10, &I2c_Ch0, &Dev_I2cCh0_ADS7138_ADDR_0x10, 0x10,&i2c_Module0_PINS);
-    init_I2C_module_addr(&I2cConf_I2cCh0_ADS7138_ADDR_0x10);
-
-    SetI2cDevinfo(&I2cConf_I2cCh0_MAX20087_ADDR_0x28, &I2c_Ch0, &Dev_I2cCh0_MAX20087_ADDR_0x28, 0x28,&i2c_Module0_PINS);
-    init_I2C_module_addr(&I2cConf_I2cCh0_MAX20087_ADDR_0x28);
-
-    SetI2cDevinfo(&I2cConf_I2cCh0_MAX20087_ADDR_0x29, &I2c_Ch0, &Dev_I2cCh0_MAX20087_ADDR_0x29, 0x29,&i2c_Module0_PINS);
-    init_I2C_module_addr(&I2cConf_I2cCh0_MAX20087_ADDR_0x29);
-
-}
-
-void ads7138_Device_inits(){
-
-    TCA9548_Channel_Mode channel_c;
-
-    channel_c=TCA9548_Channel_5;
-    /*----------------I2cCh0----------------*/
-    TCA9548_Channel_Sel(&I2cConf_I2cCh0_TCA9548_ADDR_0x70,channel_c);
-    ads7138_inits(&I2cConf_I2cCh0_ADS7138_ADDR_0x10);
+    SetI2cDevinfo(&I2cConf_I2cCh0_STS31A_ADDR_0x4A, &I2c_Ch0, &Dev_I2cCh0_STS31A_ADDR_0x4A, 0x4A,&i2c_Module0_PINS);
+    init_I2C_module_addr(&I2cConf_I2cCh0_STS31A_ADDR_0x4A);
 
 
-
-    channel_c=TCA9548_Channel_6;
-    /*----------------I2cCh1----------------*/
-    TCA9548_Channel_Sel(&I2cConf_I2cCh1_TCA9548_ADDR_0x70,channel_c);
-    ads7138_inits(&I2cConf_I2cCh1_ADS7138_ADDR_0x10);
-    /*----------------I2cCh0----------------*/
-    TCA9548_Channel_Sel(&I2cConf_I2cCh0_TCA9548_ADDR_0x70,channel_c);
-    ads7138_inits(&I2cConf_I2cCh0_ADS7138_ADDR_0x10);
-
-
-
-    channel_c=TCA9548_Channel_7;
-    /*----------------I2cCh1----------------*/
-    TCA9548_Channel_Sel(&I2cConf_I2cCh1_TCA9548_ADDR_0x70,channel_c);
-    ads7138_inits(&I2cConf_I2cCh1_ADS7138_ADDR_0x10);
+    /*-----------------------------------------------------I2cCh1---------------------------------------------------*/
+#ifdef GPIO_I2C_Enable
+    I2c_Ch1.i2c=&I2C1_Gpio;
+    I2c_Ch1.baudrate=I2C_BAUDRATE;
+    GpioI2c_initSclSdaPin(&i2c_Module1_PINS);
+#else
+    init_I2C1_module(&I2c_Ch1, &I2C1_MCP_PINS, I2C_BAUDRATE);
+#endif
 
 
 }
-
-
-
-

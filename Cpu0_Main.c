@@ -35,7 +35,9 @@
 #include "PWR_SQ.h"
 #include "Can_Cfg.h"
 #include "I2C_cfg.h"
-#include "Ifx_Console.h"                                                                            //Function   Mode   Direction  Latch  Pull Up Pull Down Drive Strength
+#include "Ifx_Console.h"
+#include "Bsp.h"
+//Function   Mode   Direction  Latch  Pull Up Pull Down Drive Strength
 
 IFX_ALIGN(4) IfxCpu_syncEvent g_cpuSyncEvent = 0;
 
@@ -83,14 +85,19 @@ void main_loop(void *arg)
     while(1)
     {
         str++;
+        vTaskDelay(pdMS_TO_TICKS(5000));
         runShellInterface(); /* Run the application shell */
         logIna226Measurements();
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
 
+int i2c_read_status = 0;
+int i2c_write_status = 0;
 static void logIna226Measurements(void)
 {
+
+#if 0
     float32 current = 0;
     float32 voltage = 0;
     boolean currentResult = FALSE;
@@ -147,7 +154,36 @@ static void logIna226Measurements(void)
     {
         Ifx_Console_print("INA226 CH3 read failed\r\n");
     }
+#endif
 
+#if 1
+    Ifx_Console_print("STS31A TMON1 \r\n");
+    TCA9548_Channel_Sel(&I2cConf_I2cCh0_TCA9548_ADDR_0x70, TCA9548_Channel_7); //ch select
+    uint8 cmd[2] = {0x24, 0x00};
+    i2c_write_status=IfxI2c_I2c_write(I2cConf_I2cCh0_STS31A_ADDR_0x4A.Device, cmd, 2);
+    vTaskDelay(pdMS_TO_TICKS(20));
+    uint8 rx[6];
+    i2c_read_status=IfxI2c_I2c_read(I2cConf_I2cCh0_STS31A_ADDR_0x4A.Device, rx, 6);
+    uint16 rawT = ((uint16)rx[0] << 8) | rx[1];
+    float tempC = -45.0f + (175.0f * (float)rawT / 65535.0f);
+
+    Ifx_Console_print("STS31A TMON1 -> Temp: %.2f C\r\n", tempC);
+#endif
+
+#if 0
+    Ifx_Console_print("STS31A TMON2 \r\n");
+    TCA9548_Channel_Sel(&I2cConf_I2cCh0_TCA9548_ADDR_0x71, TCA9548_Channel_0); //ch select
+    Ifx_Console_print("STS31A TMON2 --- \r\n");
+    uint8 cmd[2] = {0x24, 0x00};
+    i2c_write_status=IfxI2c_I2c_write(I2cConf_I2cCh0_STS31A_ADDR_0x4B.Device, cmd, 2);
+    vTaskDelay(pdMS_TO_TICKS(20));
+    uint8 rx[6];
+    i2c_read_status=IfxI2c_I2c_read(I2cConf_I2cCh0_STS31A_ADDR_0x4B.Device, rx, 6);
+    uint16 rawT = ((uint16)rx[0] << 8) | rx[1];
+    float tempC = -45.0f + (175.0f * (float)rawT / 65535.0f);
+
+    Ifx_Console_print("STS31A TMON2 -> Temp: %.2f C\r\n", tempC);
+#endif
 
 
 }
