@@ -117,7 +117,11 @@ void I2c_Init(void){
     SetI2cDevinfo(&I2cConf_I2cCh0_STS31A_ADDR_0x4A, &I2c_Ch0, &Dev_I2cCh0_STS31A_ADDR_0x4A, 0x4A,&i2c_Module0_PINS);
     init_I2C_module_addr(&I2cConf_I2cCh0_STS31A_ADDR_0x4A);
 
+    SetI2cDevinfo(&I2cConf_I2cCh0_TCA9548_ADDR_0x71, &I2c_Ch0, &Dev_I2cCh0_TCA9548_ADDR_0x71, 0x71,&i2c_Module0_PINS);
+    init_I2C_module_addr(&I2cConf_I2cCh0_TCA9548_ADDR_0x71);
 
+    SetI2cDevinfo(&I2cConf_I2cCh0_STS31A_ADDR_0x4B, &I2c_Ch0, &Dev_I2cCh0_STS31A_ADDR_0x4B, 0x4B,&i2c_Module0_PINS);
+    init_I2C_module_addr(&I2cConf_I2cCh0_STS31A_ADDR_0x4B);
     /*-----------------------------------------------------I2cCh1---------------------------------------------------*/
 #ifdef GPIO_I2C_Enable
     I2c_Ch1.i2c=&I2C1_Gpio;
