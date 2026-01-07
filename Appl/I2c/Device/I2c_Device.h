@@ -10,11 +10,11 @@
 
 
 
+#include <MAX20087.h>
 #include "TCA9548.h"
 #include "INA3221.h"
 #include "ADS7138.h"
 #include "AMC6821.h"
 #include "INA226.h"
-#include "MAX20086.h"
 
 #endif /* APPL_I2C_DEVICE_I2C_DEVICE_H_ */

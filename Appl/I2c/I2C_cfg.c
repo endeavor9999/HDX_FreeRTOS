@@ -88,8 +88,13 @@ IfxI2c_I2c_Device Dev_I2cCh0_TCA9548_ADDR_0x71;
 /*-------------------------------------------------I2cCh0_STS31A ---------------------------------------------------*/
 i2c_Configuration I2cConf_I2cCh0_STS31A_ADDR_0x4B;
 IfxI2c_I2c_Device Dev_I2cCh0_STS31A_ADDR_0x4B;
-/*------------------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------I2cCh0_MAX20087 ---------------------------------------------------*/
+i2c_Configuration I2cConf_I2cCh0_MAX20087_ADDR_0x28;
+IfxI2c_I2c_Device Dev_I2cCh0_MAX20087_ADDR_0x28;
 
+i2c_Configuration I2cConf_I2cCh0_MAX20087_ADDR_0x29;
+IfxI2c_I2c_Device Dev_I2cCh0_MAX20087_ADDR_0x29;
+/*------------------------------------------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------I2cCh1-------------------------------------------------------*/
 /*-------------------------------------------------I2cCh1_TCA9548 --------------------------------------------------*/
@@ -122,6 +127,12 @@ void I2c_Init(void){
 
     SetI2cDevinfo(&I2cConf_I2cCh0_STS31A_ADDR_0x4B, &I2c_Ch0, &Dev_I2cCh0_STS31A_ADDR_0x4B, 0x4B,&i2c_Module0_PINS);
     init_I2C_module_addr(&I2cConf_I2cCh0_STS31A_ADDR_0x4B);
+
+    SetI2cDevinfo(&I2cConf_I2cCh0_MAX20087_ADDR_0x28, &I2c_Ch0, &Dev_I2cCh0_MAX20087_ADDR_0x28, 0x28,&i2c_Module0_PINS);
+    init_I2C_module_addr(&I2cConf_I2cCh0_MAX20087_ADDR_0x28);
+
+    SetI2cDevinfo(&I2cConf_I2cCh0_MAX20087_ADDR_0x29, &I2c_Ch0, &Dev_I2cCh0_MAX20087_ADDR_0x29, 0x29,&i2c_Module0_PINS);
+    init_I2C_module_addr(&I2cConf_I2cCh0_MAX20087_ADDR_0x29);
     /*-----------------------------------------------------I2cCh1---------------------------------------------------*/
 #ifdef GPIO_I2C_Enable
     I2c_Ch1.i2c=&I2C1_Gpio;

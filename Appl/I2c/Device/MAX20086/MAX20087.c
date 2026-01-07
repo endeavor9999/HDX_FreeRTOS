@@ -6,9 +6,9 @@
  */
 
 
-#include "MAX20086.h"
+#include "MAX20087.h"
 
-uint8 I2CWrite_MAX20086(i2c_Configuration *I2c_device,uint8 slave_rp,uint8 *data,uint8 length)
+uint8 I2CWrite_MAX20087(i2c_Configuration *I2c_device,uint8 slave_rp,uint8 *data,uint8 length)
 {
     uint8 result_tx=0;
     length++;
@@ -30,7 +30,7 @@ uint8 I2CWrite_MAX20086(i2c_Configuration *I2c_device,uint8 slave_rp,uint8 *data
     return result_tx;
 }
 
-uint8 I2CRead_MAX20086(i2c_Configuration *I2c_device,uint8 slave_rp,uint8 *recive_data, uint8 length)
+uint8 I2CRead_MAX20087(i2c_Configuration *I2c_device,uint8 slave_rp,uint8 *recive_data, uint8 length)
 {
 
     uint8 result_tx=0;

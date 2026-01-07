@@ -77,6 +77,54 @@ void core0_main(void)
 
     }
 }
+
+#define MAX20087_REG_ID      0x02
+#define MAX20087_REG_STAT1   0x03
+#define MAX20087_REG_STAT2L  0x04
+#define MAX20087_REG_STAT2H  0x05
+static void checkMAX20087(void)
+{
+    uint8 id = 0, stat1 = 0, stat2l = 0, stat2h = 0;
+    uint8 part;
+
+    I2CRead_MAX20087(&I2cConf_I2cCh0_MAX20087_ADDR_0x28, MAX20087_REG_ID, &id, 1);
+    part = (id >> 4) & 0x3;
+    if (part != MAX20087_PART_ID_MAX20087) {
+        Ifx_Console_print("MAX20087 ID mismatch (0x%02X)\r\n", id);
+        return;
+    }
+
+    I2CRead_MAX20087(&I2cConf_I2cCh0_MAX20087_ADDR_0x28, MAX20087_REG_STAT1, &stat1, 1);
+    I2CRead_MAX20087(&I2cConf_I2cCh0_MAX20087_ADDR_0x28, MAX20087_REG_STAT2L, &stat2l, 1);
+    I2CRead_MAX20087(&I2cConf_I2cCh0_MAX20087_ADDR_0x28, MAX20087_REG_STAT2H, &stat2h, 1);
+
+    if (stat1 & 0xBC) { // ISET/OVIN/UVIN/OVDD/UVDD
+        Ifx_Console_print("MAX20087 STAT1 fault: 0x%02X\r\n", stat1);
+    } else if ((stat2l | stat2h) != 0) { // TS/OC/OV/UV
+        Ifx_Console_print("MAX20087 STAT2 fault: L=0x%02X H=0x%02X\r\n", stat2l, stat2h);
+    } else {
+        Ifx_Console_print("MAX20087(U7300) OK\r\n");
+    }
+
+    I2CRead_MAX20087(&I2cConf_I2cCh0_MAX20087_ADDR_0x29, MAX20087_REG_ID, &id, 1);
+    part = (id >> 4) & 0x3;
+    if (part != MAX20087_PART_ID_MAX20087) {
+        Ifx_Console_print("MAX20087 ID mismatch (0x%02X)\r\n", id);
+        return;
+    }
+
+    I2CRead_MAX20087(&I2cConf_I2cCh0_MAX20087_ADDR_0x29, MAX20087_REG_STAT1, &stat1, 1);
+    I2CRead_MAX20087(&I2cConf_I2cCh0_MAX20087_ADDR_0x29, MAX20087_REG_STAT2L, &stat2l, 1);
+    I2CRead_MAX20087(&I2cConf_I2cCh0_MAX20087_ADDR_0x29, MAX20087_REG_STAT2H, &stat2h, 1);
+
+    if (stat1 & 0xBC) { // ISET/OVIN/UVIN/OVDD/UVDD
+        Ifx_Console_print("MAX20087 STAT1 fault: 0x%02X\r\n", stat1);
+    } else if ((stat2l | stat2h) != 0) { // TS/OC/OV/UV
+        Ifx_Console_print("MAX20087 STAT2 fault: L=0x%02X H=0x%02X\r\n", stat2l, stat2h);
+    } else {
+        Ifx_Console_print("MAX20087(U7301) OK\r\n");
+    }
+}
 uint32 str;
 void main_loop(void *arg)
 {
@@ -88,6 +136,7 @@ void main_loop(void *arg)
         vTaskDelay(pdMS_TO_TICKS(5000));
         runShellInterface(); /* Run the application shell */
         logIna226Measurements();
+
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
@@ -155,11 +204,13 @@ static void logIna226Measurements(void)
         Ifx_Console_print("INA226 CH3 read failed\r\n");
     }
 #endif
+
+#if 1
     uint8 cmd[2] = {0x24, 0x00};
     uint8 rx[6];
     uint16 rawT = 0;
     float tempC = 0;
-#if 1
+
     TCA9548_Channel_Sel(&I2cConf_I2cCh0_TCA9548_ADDR_0x70, TCA9548_Channel_7); //ch select
 
     i2c_write_status=IfxI2c_I2c_write(I2cConf_I2cCh0_STS31A_ADDR_0x4A.Device, cmd, 2);
@@ -170,9 +221,7 @@ static void logIna226Measurements(void)
     tempC = -45.0f + (175.0f * (float)rawT / 65535.0f);
 
     Ifx_Console_print("STS31A TMON1 -> Temp: %.2f C\r\n", tempC);
-#endif
 
-#if 1
     TCA9548_Channel_Sel(&I2cConf_I2cCh0_TCA9548_ADDR_0x71, TCA9548_Channel_0); //ch select
 
     i2c_write_status=IfxI2c_I2c_write(I2cConf_I2cCh0_STS31A_ADDR_0x4B.Device, cmd, 2);
@@ -185,6 +234,9 @@ static void logIna226Measurements(void)
     Ifx_Console_print("STS31A TMON2 -> Temp: %.2f C\r\n", tempC);
 #endif
 
+
+    TCA9548_Channel_Sel(&I2cConf_I2cCh0_TCA9548_ADDR_0x71, TCA9548_Channel_1); //ch select
+    checkMAX20087();
 
 }
 
