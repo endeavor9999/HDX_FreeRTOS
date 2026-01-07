@@ -57,15 +57,15 @@ IfxI2c_Pins I2C1_MCP_PINS =
 
 GpioI2c_Pins i2c_Module1_PINS =
 {
-        &DioConf_DioChannel_11_13, //SDA
-        &DioConf_DioChannel_11_14, //SCL
+        &DioConf_DioChannel_11_14_TC387_I2C1_SCL, //SCL
+        &DioConf_DioChannel_11_13_TC387_I2C1_SDA, //SDA
         IfxPort_PadDriver_ttlSpeed4
 };
 
 GpioI2c_Pins i2c_Module0_PINS =
 {
-        &DioConf_DioChannel_13_1, //SCL
-        &DioConf_DioChannel_13_2, //SDA
+        &DioConf_DioChannel_13_1_TC387_I2C0_SCL, //SCL
+        &DioConf_DioChannel_13_2_TC387_I2C0_SDA, //SDA
         IfxPort_PadDriver_ttlSpeed4
 };
 
