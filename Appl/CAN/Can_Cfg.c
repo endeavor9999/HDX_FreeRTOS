@@ -295,7 +295,7 @@ void Can_Task(void *arg)
         {
             Can0_Cfg.Can_Ch->txMsg.messageId = 0x201;
             Can0_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
-            Can0_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_standard;
+            Can0_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_fdLongAndFast;
             Can0_Cfg.Can_Ch->txData[0] = 0x01010101U;
             Can0_Cfg.Can_Ch->txData[1] = 0x01010101U;
             IfxCan_Can_sendMessage(&Can0_Cfg.Can_Ch->canSrcNode, &Can0_Cfg.Can_Ch->txMsg,
@@ -317,7 +317,7 @@ void Can_Task(void *arg)
         {
             Can1_Cfg.Can_Ch->txMsg.messageId = 0x202;
             Can1_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
-            Can1_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_standard;
+            Can1_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_fdLongAndFast;
             Can1_Cfg.Can_Ch->txData[0] = 0x01010101U;
             Can1_Cfg.Can_Ch->txData[1] = 0x01010101U;
             IfxCan_Can_sendMessage(&Can1_Cfg.Can_Ch->canSrcNode, &Can1_Cfg.Can_Ch->txMsg,
@@ -339,7 +339,7 @@ void Can_Task(void *arg)
         {
             Can2_Cfg.Can_Ch->txMsg.messageId = 0x203;
             Can2_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
-            Can2_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_standard;
+            Can2_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_fdLongAndFast;
             Can2_Cfg.Can_Ch->txData[0] = 0x01010101U;
             Can2_Cfg.Can_Ch->txData[1] = 0x01010101U;
             IfxCan_Can_sendMessage(&Can2_Cfg.Can_Ch->canSrcNode, &Can2_Cfg.Can_Ch->txMsg,

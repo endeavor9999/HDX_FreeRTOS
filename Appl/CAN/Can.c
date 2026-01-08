@@ -65,8 +65,14 @@ void Can_init(Can_Node_Info *Can_Info){
     Can_Info->Can_Ch->canNodeConfig.nodeId = Can_Info->Node;
 
     Can_Info->Can_Ch->canNodeConfig.frame.type = IfxCan_FrameType_transmitAndReceive;
-    //Can_Info->Can_Ch->canNodeConfig.frame.mode = IfxCan_FrameMode_fdLongAndFast;
-    Can_Info->Can_Ch->canNodeConfig.frame.mode = IfxCan_FrameMode_standard;
+    Can_Info->Can_Ch->canNodeConfig.frame.mode = IfxCan_FrameMode_fdLongAndFast;
+    Can_Info->Can_Ch->canNodeConfig.calculateBitTimingValues = TRUE;
+    Can_Info->Can_Ch->canNodeConfig.baudRate.baudrate = 500000;
+    Can_Info->Can_Ch->canNodeConfig.baudRate.samplePoint = 8000;
+    Can_Info->Can_Ch->canNodeConfig.baudRate.syncJumpWidth = 3;
+    Can_Info->Can_Ch->canNodeConfig.fastBaudRate.baudrate = 1000000;
+    Can_Info->Can_Ch->canNodeConfig.fastBaudRate.samplePoint = 8000;
+    Can_Info->Can_Ch->canNodeConfig.fastBaudRate.syncJumpWidth = 3;
 
    //Can_Info->Can_Ch->canNodeConfig.txConfig.txMode =IfxCan_TxMode_dedicatedBuffers; //IfxCan_TxMode_sharedFifo; // //IfxCan_TxMode_fifo;
    // Can_Info->Can_Ch->canNodeConfig.txConfig.txBufferDataFieldSize = IfxCan_DataFieldSize_64;

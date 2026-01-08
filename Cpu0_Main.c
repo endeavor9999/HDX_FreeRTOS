@@ -67,8 +67,8 @@ void core0_main(void)
     initShellInterface();
     I2c_Init();
     sys_thread_new("task_app_PWR_SQ",task_app_PWR_SQ,NULL,configMINIMAL_STACK_SIZE,4);
-    sys_thread_new("main_loop",main_loop,NULL,configMINIMAL_STACK_SIZE,4);
-    //sys_thread_new("Can_Task",Can_Task,NULL,configMINIMAL_STACK_SIZE,4);
+    //sys_thread_new("main_loop",main_loop,NULL,configMINIMAL_STACK_SIZE,4);
+    sys_thread_new("Can_Task",Can_Task,NULL,configMINIMAL_STACK_SIZE,4);
     vTaskStartScheduler();
 
     while(1)
