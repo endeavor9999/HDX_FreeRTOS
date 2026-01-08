@@ -293,7 +293,7 @@ void Can_Task(void *arg)
         //*
         if((xTaskGetTickCount() - lastCanTick0) >= pdMS_TO_TICKS(1000))
         {
-            Can0_Cfg.Can_Ch->txMsg.messageId = 0x201;
+            Can0_Cfg.Can_Ch->txMsg.messageId = 0x200;
             Can0_Cfg.Can_Ch->txMsg.dataLengthCode = IfxCan_DataLengthCode_8;
             Can0_Cfg.Can_Ch->txMsg.frameMode = IfxCan_FrameMode_fdLongAndFast;
             Can0_Cfg.Can_Ch->txData[0] = 0x01010101U;
